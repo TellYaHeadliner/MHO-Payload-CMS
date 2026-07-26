@@ -25,7 +25,9 @@ const AlbumConcept = () => {
       {/* Gallery */}
       <main className="max-w-7xl mx-auto px-3 md:px-5 pb-4">
         <FadeInSection>
-          <GalleryLightbox images={GALLERY_DATA} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <GalleryLightbox images={GALLERY_DATA} />
+          </div>
         </FadeInSection>
       </main>
 
@@ -39,7 +41,7 @@ const AlbumConcept = () => {
             </h3>
           </div>
           <div className="w-full md:w-auto">
-            <BackgroundAudio src={`${url}/audio/album-concept.wav`}/>
+            <BackgroundAudio src={`${url}/audio/album-concept.wav`} />
           </div>
         </div>
       </div>
@@ -54,7 +56,7 @@ const AlbumConcept = () => {
         </a>
       </div>
 
-    <LightboxGallery images={GALLERY_DATA} />
+      <LightboxGallery images={GALLERY_DATA} />
     </>
   )
 }

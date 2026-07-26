@@ -1,4 +1,5 @@
 'use client'
+import { cn } from '@/utils/cn';
 import React, { useState, useEffect, useCallback } from 'react'
 
 export interface GalleryItem {
@@ -9,9 +10,10 @@ export interface GalleryItem {
 
 interface GalleryProps {
   images: GalleryItem[]
+  classImage?: string;
 }
 
-export const GalleryLightbox: React.FC<GalleryProps> = ({ images }) => {
+export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) => {
   const [activeImage, setActiveImage] = useState<string | null>(null)
 
   const closeLightbox = useCallback((): void => {
@@ -40,22 +42,20 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images }) => {
   return (
     <>
       {/* Grid Hình ảnh */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {images.map((img) => (
-          <div
-            key={img.id}
-            className="group overflow-hidden rounded-sm cursor-pointer"
-            onClick={() => setActiveImage(img.src)}
-          >
-            <img
-              src={img.src}
-              alt={img.alt}
-              loading="lazy"
-              className="gallery-image w-full h-auto transition-transform duration-400 ease-in-out group-hover:scale-[1.03] group-hover:opacity-90 select-none"
-            />
-          </div>
-        ))}
-      </div>
+      {images.map((img) => (
+        <div
+          key={img.id}
+          className="group overflow-hidden rounded-sm cursor-pointer"
+          onClick={() => setActiveImage(img.src)}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            className={cn('gallery-image w-full h-auto transition-transform duration-400 ease-in-out group-hover:scale-[1.03] group-hover:opacity-90 select-none', classImage)}
+          />
+        </div>
+      ))}
 
       {/* Lightbox Modal */}
       {activeImage && (
