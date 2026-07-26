@@ -1,54 +1,74 @@
-import { BackgroundAudio } from '@/components/background-audio';
-import { GalleryItem, GalleryLightbox } from '@/components/gallery-box'
-import { LightboxGallery } from '@/components/light-box-gallery';
-import Navbar from '@/components/navbar'
+import { BackgroundAudio } from "@/components/background-audio";
+import { GalleryItem, GalleryLightbox } from "@/components/gallery-box";
+import { LightboxGallery } from "@/components/light-box-gallery";
+import Navbar from "@/components/navbar";
 
 const url = 'https://www.myhealingosh-gallery.com/'
 
 const GALLERY_DATA: GalleryItem[] = [
   {
     id: 1,
-    src: `${url}/gallery/collab/[myhealingosh-x-sir.chanyeol]-fullsize.webp`,
-    alt: 'Collab 1',
+    src: `${url}/gallery/poster/mma.webp`,
+    alt: 'Poster 1',
   },
   {
     id: 2,
-    src: `${url}/gallery/collab/ads-sechan-chanyeol-final.webp`,
-    alt: 'Collab 2',
+    src: `${url}/gallery/poster/elizabeth-taylor.webp`,
+    alt: 'Poster 2',
   },
   {
     id: 3,
-    src: `${url}/gallery/collab/ads-sechan-sehun-final-1.webp`,
-    alt: 'Collab 3',
+    src: `${url}/gallery/poster/chanyeol.webp`,
+    alt: 'Poster 3',
   },
   {
     id: 4,
-    src: `${url}/gallery/collab/final-ads.webp`,
-    alt: 'Collab 4',
+    src: `${url}/gallery/poster/ophelia.webp`,
+    alt: 'Poster 4',
   },
   {
     id: 5,
-    src: `${url}/gallery/collab/final2.webp`,
-    alt: 'Collab 5',
+    src: `${url}/gallery/poster/reverxe-ver--.webp`,
+    alt: 'Poster 5',
   },
   {
     id: 6,
-    src: `${url}/gallery/collab/finalfinal.webp`,
-    alt: 'Collab 6',
+    src: `${url}/gallery/poster/reverxe-1st.webp`,
+    alt: 'Poster 6',
   },
   {
     id: 7,
-    src: `${url}/gallery/collab/hello-ba-nha-final-final.webp`,
-    alt: 'Collab 7',
+    src: `${url}/gallery/poster/reverxe.webp`,
+    alt: 'Poster 7',
   },
   {
     id: 8,
-    src: `${url}/gallery/collab/oh-sehun-ads.webp`,
-    alt: 'Collab 8',
+    src: `${url}/gallery/poster/to-all-the-boys.webp`,
+    alt: 'Poster 8',
+  },
+  {
+    id: 9,
+    src: `${url}/gallery/poster/topartist.webp`,
+    alt: 'Poster 9',
+  },
+  {
+    id: 10,
+    src: `${url}/gallery/poster/dearmygirl.webp`,
+    alt: 'Poster 10',
+  },
+  {
+    id: 11,
+    src: `${url}/gallery/poster/moonlightshadowa.webp`,
+    alt: 'Poster 11',
+  },
+  {
+    id: 12,
+    src: `${url}/gallery/poster/exo-poster.webp`,
+    alt: 'Poster 12',
   },
 ]
 
-const Collab = () => {
+const Poster = () => {
   return (
     <>
       <Navbar />
@@ -59,14 +79,14 @@ const Collab = () => {
           </h1>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <GalleryLightbox
             images={GALLERY_DATA}
             classImage="gallery-image w-full h-auto group-hover:scale-[1.03] group-hover:opacity-90"
           />
         </div>
       </div>
-      
+
       {/* Now Playing */}
       <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4">
         <div className="bg-white/5 border border-white/15 rounded-lg p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5 fade-in visible">
@@ -97,4 +117,4 @@ const Collab = () => {
   )
 }
 
-export default Collab
+export default Poster

@@ -61,31 +61,31 @@ const Home = () => {
           Collab
         </Link>
         <Link
-          href="/freebies.html"
+          href="/freebies"
           className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold uppercase tracking-wider transition-all duration-300"
         >
           Freebies
         </Link>
         <Link
-          href="/header.html"
+          href="/header"
           className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold uppercase tracking-wider transition-all duration-300"
         >
           Header
         </Link>
         <Link
-          href="/instagram-ads.html"
+          href="/instagram-ads"
           className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold uppercase tracking-wider transition-all duration-300"
         >
           Instagram Ads
         </Link>
         <Link
-          href="/mail-club-concept.html"
+          href="/mail-club-concept"
           className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold uppercase tracking-wider transition-all duration-300"
         >
           Mail Club Concept
         </Link>
         <Link
-          href="/poster.html"
+          href="/poster"
           className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold uppercase tracking-wider transition-all duration-300"
         >
           Poster
