@@ -1,0 +1,18 @@
+{
+  "rootlayout": {
+    "title": "NextCRM",
+    "description": "NextCRM is an open source CRM build on top of NextJS."
+  },
+  "createblog": {
+    "title": "Create Blog",
+    "description": "Create a new blog post",
+    "title_label": "Title",
+    "description_label": "Description",
+    "cover_image_label": "Cover Image",
+    "summary_label": "Summary",
+    "content_label": "Content",
+    "gallery_label": "Gallery",
+    "categories_label": "Categories",
+    "author_label": "Author"
+  }
+}

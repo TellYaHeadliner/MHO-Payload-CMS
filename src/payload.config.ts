@@ -7,6 +7,14 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Blog } from '@/collections/Blog';
+import { Categories } from '@/collections/Categories';
+import { en } from '@payloadcms/translations/languages/en';
+import { vi } from '@payloadcms/translations/languages/vi';
+
+import enTrans from "@/locales/en.json";
+import { customTranslations } from '@/custom-translations';
+// import viTrans from "@/locales/vi.json";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -18,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Blog, Categories],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -31,4 +39,9 @@ export default buildConfig({
   }),
   sharp,
   plugins: [],
+  i18n: {
+    fallbackLanguage: 'en',
+    supportedLanguages: { en, vi },
+    translations: customTranslations
+  },
 })
