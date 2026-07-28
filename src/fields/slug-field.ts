@@ -13,13 +13,10 @@ export const slugField: SlugFieldFactory = (fallbackField = 'title') => ({
     const t = defaultT as TFunction<CustomTranslationsKeys>
     return t('categories:slug_label')
   },
-  // required: true,
+  required: true,
   unique: true, // Ensures DB indexing and optimization
   index: true, // Speeds up lookups
   admin: {
-    // components: {
-    //   Field: "@/components/admin/button"
-    // },
     description: 'Auto-generated from the title if left blank.',
     components: {
       Field: "@/components/admin/slug-field-with-button",
