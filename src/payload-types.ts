@@ -173,9 +173,7 @@ export interface Blog {
   id: number;
   title: string;
   description: string;
-  coverImage: (number | Media)[];
   summary?: string | null;
-  conceptTheme?: ('minimalist' | 'vintage' | 'dark-mood' | 'healing-nature') | null;
   content?: {
     root: {
       type: string;
@@ -211,6 +209,14 @@ export interface Blog {
 export interface Category {
   id: number;
   title: string;
+  /**
+   * Auto-generated from the title if left blank.
+   */
+  slug?: string | null;
+  /**
+   * Bỏ trống nếu đây là danh mục gốc
+   */
+  parent?: (number | null) | Category;
   updatedAt: string;
   createdAt: string;
 }
@@ -343,9 +349,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface BlogSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  coverImage?: T;
   summary?: T;
-  conceptTheme?: T;
   content?: T;
   gallery?:
     | T
@@ -366,6 +370,8 @@ export interface BlogSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
+  parent?: T;
   updatedAt?: T;
   createdAt?: T;
 }

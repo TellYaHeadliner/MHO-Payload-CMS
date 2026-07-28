@@ -14,5 +14,9 @@
     "gallery_label": "Gallery",
     "categories_label": "Categories",
     "author_label": "Author"
+  },
+  "categories":{
+    "title_label": "Category",
+    "slug_label": "Slug"
   }
 }

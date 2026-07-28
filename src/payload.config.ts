@@ -1,5 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -27,7 +27,13 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Blog, Categories],
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      FixedToolbarFeature(),
+      InlineToolbarFeature(),
+    ],
+  }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -42,6 +48,6 @@ export default buildConfig({
   i18n: {
     fallbackLanguage: 'en',
     supportedLanguages: { en, vi },
-    translations: customTranslations
+    translations: customTranslations,
   },
 })

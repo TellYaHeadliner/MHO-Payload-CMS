@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload'
 import type { TFunction } from '@payloadcms/translations'
-import type { Field } from 'payload'
 
-import { CustomTranslationsKeys } from "@/custom-translations"
+import { CustomTranslationsKeys } from '@/custom-translations'
+import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const Blog: CollectionConfig = {
   slug: 'blog',
@@ -20,44 +20,29 @@ export const Blog: CollectionConfig = {
       name: 'description',
       type: 'text',
       required: true,
-    },
-    {
-      name: 'coverImage',
-      label: 'Cover Image',
-      type: 'upload',
-      relationTo: 'media',
-      required: true,
-      hasMany: true,
+      label: ({ t: defaultT }) => {
+        const t = defaultT as TFunction<CustomTranslationsKeys>
+        return t('createblog:description_label')
+      },
     },
     {
       name: 'summary',
+      label: ({ t: defaultT }) => {
+        const t = defaultT as TFunction<CustomTranslationsKeys>
+        return t('createblog:summary_label')
+      },
       type: 'textarea',
-    },
-    {
-      name: 'conceptTheme',
-      type: 'select',
-      options: [
-        {
-          label: 'Minimalist',
-          value: 'minimalist',
-        },
-        {
-          label: 'Vintage',
-          value: 'vintage',
-        },
-        {
-          label: 'Dark Mood',
-          value: 'dark-mood',
-        },
-        {
-          label: 'Healing Nature',
-          value: 'healing-nature',
-        },
-      ],
     },
     {
       name: 'content',
       type: 'richText',
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          FixedToolbarFeature(),
+          InlineToolbarFeature(),
+        ],
+      }),
     },
     {
       name: 'gallery',
@@ -83,17 +68,11 @@ export const Blog: CollectionConfig = {
       name: 'categories',
       type: 'relationship',
       relationTo: 'categories',
-      admin: {
-        position: 'sidebar',
-      },
     },
     {
       name: 'author',
       type: 'relationship',
       relationTo: 'users',
-      admin: {
-        position: 'sidebar',
-      },
     },
   ],
 }
