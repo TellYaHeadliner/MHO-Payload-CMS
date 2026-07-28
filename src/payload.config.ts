@@ -14,6 +14,7 @@ import { vi } from '@payloadcms/translations/languages/vi';
 
 import enTrans from "@/locales/en.json";
 import { customTranslations } from '@/custom-translations';
+import { Gallery } from '@/collections/Gallery';
 // import viTrans from "@/locales/vi.json";
 
 const filename = fileURLToPath(import.meta.url)
@@ -26,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Blog, Categories],
+  collections: [Users, Media, Blog, Categories, Gallery],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,

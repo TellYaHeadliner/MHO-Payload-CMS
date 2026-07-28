@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     blog: Blog;
     categories: Category;
+    gallery: Gallery;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     blog: BlogSelect<false> | BlogSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -222,6 +224,33 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery".
+ */
+export interface Gallery {
+  id: number;
+  title: string;
+  description?: string | null;
+  images?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        altText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  music?: {
+    music?: ('upload' | 'url') | null;
+    audioFile?: (number | null) | Media;
+    /**
+     * Spotify URL
+     */
+    spotifyUrl?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -259,6 +288,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'gallery';
+        value: number | Gallery;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -372,6 +405,31 @@ export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   parent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        altText?: T;
+        id?: T;
+      };
+  music?:
+    | T
+    | {
+        music?: T;
+        audioFile?: T;
+        spotifyUrl?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
