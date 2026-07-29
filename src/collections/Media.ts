@@ -4,7 +4,9 @@ export const Media: CollectionConfig = {
   slug: 'media',
   upload: true,
   access: {
-    read: () => true,
+    create: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
+    update: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
+    delete: ({ req: { user } }) => Boolean(user?.role === 'admin'),
   },
   fields: [
     {

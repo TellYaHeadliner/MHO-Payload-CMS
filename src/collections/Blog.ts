@@ -6,6 +6,12 @@ import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@paylo
 
 export const Blog: CollectionConfig = {
   slug: 'blog',
+  // Chỉ có 2 role admin / editor
+  access: {
+    create: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
+    update: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
+    delete: ({ req: { user } }) => Boolean(user?.role === 'admin'),
+  },
   fields: [
     {
       name: 'title',

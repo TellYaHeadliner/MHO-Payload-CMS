@@ -10,7 +10,9 @@ export const Categories: CollectionConfig = {
     defaultColumns: ['title', 'slug', 'updatedAt'],
   },
   access: {
-    read: () => true,
+    create: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
+    update: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
+    delete: ({ req: { user } }) => Boolean(user?.role === 'admin'),
   },
   fields: [
     {

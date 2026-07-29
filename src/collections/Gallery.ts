@@ -2,6 +2,11 @@ import type { CollectionConfig } from 'payload'
 
 export const Gallery: CollectionConfig = {
   slug: 'gallery',
+  access: {
+    create: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
+    update: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
+    delete: ({ req: { user } }) => Boolean(user?.role === 'admin'),
+  },
   fields: [
     {
       name: 'title',
