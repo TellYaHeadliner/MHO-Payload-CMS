@@ -1,3 +1,5 @@
+import { anyone } from '@/access/anyone';
+import { isLoggedIn } from '@/access/isLoggedIn';
 import { CustomTranslationsKeys } from '@/custom-translations';
 import { slugField } from '@/fields/slug-field';
 import { TFunction } from '@payloadcms/translations';
@@ -7,12 +9,14 @@ export const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'parent', 'updatedAt'],
+    group: 'Nội dung',
   },
   access: {
-    create: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
-    update: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
-    delete: ({ req: { user } }) => Boolean(user?.role === 'admin'),
+    read: anyone,
+    create: isLoggedIn,
+    update: isLoggedIn,
+    delete: isLoggedIn,
   },
   fields: [
     {
@@ -40,4 +44,5 @@ export const Categories: CollectionConfig = {
       },
     },
   ],
+  timestamps: true,
 }

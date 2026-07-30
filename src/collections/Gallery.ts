@@ -44,7 +44,7 @@ export const Gallery: CollectionConfig = {
       type: 'group',
       fields: [
         {
-          name: 'music',
+          name: 'sourceType', // 👈 đổi từ 'music' thành 'sourceType'
           label: ({ t: defaultT }) => defaultT('gallery:music_label'),
           type: 'select',
           defaultValue: 'upload',
@@ -65,7 +65,7 @@ export const Gallery: CollectionConfig = {
           label: ({ t: defaultT }) => defaultT('gallery:music_upload_label'),
           relationTo: 'media',
           admin: {
-            condition: (data, siblingData) => siblingData?.sourceType === 'upload',
+            condition: (data, siblingData) => siblingData?.sourceType === 'upload', // ✅ khớp tên
           },
         },
         {
@@ -74,7 +74,7 @@ export const Gallery: CollectionConfig = {
           type: 'text',
           admin: {
             description: 'Spotify URL',
-            condition: (data, siblingData) => siblingData?.sourceType === 'url',
+            condition: (data, siblingData) => siblingData?.sourceType === 'url', // ✅ khớp tên
           },
         },
       ],
