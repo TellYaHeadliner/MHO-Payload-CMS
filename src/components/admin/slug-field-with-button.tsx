@@ -1,8 +1,7 @@
-// components/SlugFieldWithButton.tsx
 'use client'
 
 import React from 'react'
-import { TextInput, useField, useAllFormFields } from '@payloadcms/ui'
+import { TextInput, useField, useAllFormFields, FieldLabel } from '@payloadcms/ui'
 import type { TextFieldClientProps } from 'payload'
 
 // Hàm chuyển đổi tiếng Việt có dấu thành slug không dấu
@@ -15,68 +14,81 @@ const slugify = (val: string): string =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)+/g, '')
 
-const SlugFieldWithButton: React.FC<TextFieldClientProps> = (props) => {
+const SlugFieldWithButton: React.FC<TextFieldClientProps> = ({ field, path }) => {
   // 1. Lấy dữ liệu toàn bộ form đang nhập
-   const [fields, dispatchFields] = useAllFormFields()
+  const [fields, dispatchFields] = useAllFormFields()
 
-  // 2. Lấy helper để cập nhật giá trị cho chính ô slug này
-  const { value, setValue, showError, errorMessage } = useField<string>({ path: props.path })
+  // 2. Lấy thông tin field hiện tại từ useField
+  const { value, setValue, showError, errorMessage } = useField<string>({ path })
+
+  // Trích xuất label và required từ cấu hình field để truyền vào FieldLabel
+  const { label, required } = field
 
   // 3. Hàm xử lý khi bấm nút tạo slug
   const handleGenerateSlug = (e: React.MouseEvent) => {
-    e.preventDefault() // Ngăn chặn form bị submit nhầm
+    e.preventDefault()
 
     // Lấy giá trị hiện tại của ô 'title' trong form
     const titleValue = fields['title']?.value as string
 
     if (titleValue) {
       const generated = slugify(titleValue)
-      setValue(generated) // Gán giá trị mới vào ô slug
+
+      // Cập nhật giá trị vào form state của Payload
+      setValue(generated)
+
+      // Xóa thông báo lỗi cũ nếu có
       dispatchFields({
         type: 'UPDATE',
-        path: props.path,
+        path,
         valid: true,
         errorMessage: undefined,
       })
     } else {
+      // Đánh dấu lỗi nếu chưa nhập title
       dispatchFields({
         type: 'UPDATE',
-        path: props.path,
+        path,
         valid: false,
-        // Dùng ép kiểu "as any" để bỏ qua khai báo nghiêm ngặt i18n Translation Key của hệ thống
         errorMessage: 'Vui lòng nhập Tiêu đề (Title) trước khi bấm tạo Slug!' as any,
       })
     }
   }
 
   return (
-    <div style={{ marginBottom: '20px' }}>
-      {/* Label của trường dữ liệu */}
-      <label className="field-label" style={{ display: 'block', marginBottom: '5px' }}>
-        {(props.field.label as string) || 'Slug'}
-      </label>
+    <div className="field-type text">
+      {/* Hiển thị chuẩn Label của Payload */}
+      <FieldLabel label={label} path={path} required={required} />
 
-      {/* Bọc input và button nằm ngang hàng */}
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-        <div style={{ flexGrow: 1 }}>
-          {/* Tái sử dụng component Input chuẩn của Payload */}
-          <TextInput path={props.path} value={value} onChange={(e) => setValue(e.target.value)} />
-        </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {/* Hiển thị chuẩn Input của Payload */}
+        <TextInput
+          path={path}
+          value={value || ''}
+          onChange={(e) => setValue(e.target.value)}
+          style={{ flexGrow: 1 }}
+        />
 
-        {/* Nút bấm custom nằm bên phải */}
+        {/* Hiển thị nút tạo Slug */}
         <button
           type="button"
           onClick={handleGenerateSlug}
-          className="btn btn--style-primary btn--size-medium "
-          // onMouseOver={(e) =>
-          //   (e.currentTarget.style.backgroundColor = 'var(--theme-elevation-200)')
-          // }
-          // onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'var(--theme-elevation-150)')}
+          className="btn--style-secondary"
+          style={{ padding: '8px 15px' }}
         >
           Tạo Slug
         </button>
       </div>
 
+      {/* Hiển thị thông báo lỗi dưới ô input nếu có */}
+      {showError && errorMessage && (
+        <div
+          className="error-message"
+          style={{ color: 'var(--theme-error-500)', marginTop: '4px', fontSize: '12px' }}
+        >
+          {errorMessage}
+        </div>
+      )}
     </div>
   )
 }

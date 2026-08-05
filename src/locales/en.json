@@ -17,6 +17,7 @@
   },
   "categories":{
     "title_label": "Category",
-    "slug_label": "Slug"
+    "slug_label": "Slug",
+    "parent_label": "Parent Categories"
   }
 }

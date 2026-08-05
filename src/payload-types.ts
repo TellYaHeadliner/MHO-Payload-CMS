@@ -129,6 +129,8 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  name: string;
+  role: 'admin' | 'editor' | 'viewer';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -154,7 +156,12 @@ export interface User {
  */
 export interface Media {
   id: number;
+  /**
+   * Bắt buộc cho SEO & accessibility
+   */
   alt: string;
+  caption?: string | null;
+  category?: ('general' | 'blog' | 'gallery' | 'branding') | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -174,6 +181,10 @@ export interface Media {
 export interface Blog {
   id: number;
   title: string;
+  /**
+   * Auto-generated from the title if left blank.
+   */
+  slug: string;
   description: string;
   summary?: string | null;
   content?: {
@@ -200,7 +211,7 @@ export interface Blog {
       }[]
     | null;
   categories?: (number | null) | Category;
-  author?: (number | null) | User;
+  author: number | User;
   updatedAt: string;
   createdAt: string;
 }
@@ -214,7 +225,7 @@ export interface Category {
   /**
    * Auto-generated from the title if left blank.
    */
-  slug?: string | null;
+  slug: string;
   /**
    * Bỏ trống nếu đây là danh mục gốc
    */
@@ -239,7 +250,7 @@ export interface Gallery {
       }[]
     | null;
   music?: {
-    music?: ('upload' | 'url') | null;
+    sourceType?: ('upload' | 'url') | null;
     audioFile?: (number | null) | Media;
     /**
      * Spotify URL
@@ -340,6 +351,8 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -363,6 +376,8 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  caption?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -381,6 +396,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface BlogSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   description?: T;
   summary?: T;
   content?: T;
@@ -426,7 +442,7 @@ export interface GallerySelect<T extends boolean = true> {
   music?:
     | T
     | {
-        music?: T;
+        sourceType?: T;
         audioFile?: T;
         spotifyUrl?: T;
       };

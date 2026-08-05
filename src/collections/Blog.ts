@@ -3,6 +3,7 @@ import type { TFunction } from '@payloadcms/translations'
 
 import { CustomTranslationsKeys } from '@/custom-translations'
 import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { slugField } from '@/fields/slug-field';
 
 export const Blog: CollectionConfig = {
   slug: 'blog',
@@ -22,6 +23,7 @@ export const Blog: CollectionConfig = {
       },
       required: true,
     },
+    slugField('title'),
     {
       name: 'description',
       type: 'text',
@@ -79,6 +81,7 @@ export const Blog: CollectionConfig = {
       name: 'author',
       type: 'relationship',
       relationTo: 'users',
+      required: true,
     },
   ],
 }

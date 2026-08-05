@@ -9,3 +9,10 @@
 .rich-text-lexical--show-gutter > .rich-text-lexical__wrap > .editor-container > .editor-scroller > .editor > .ContentEditable__root:before{
   left: 10px;
 }
+
+
+.container-wrapper-input-and-button{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
