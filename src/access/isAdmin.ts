@@ -1,7 +1,16 @@
-import { Access } from 'payload/config'
+import type { Access } from 'payload'
 
-// Hàm kiểm tra người dùng có vai trò Admin hay không
-export const isAdmin: Access = ({ req: { user } }) => {
-  return Boolean(user?.role === 'admin')
+import { checkRole } from '@/access/utilities'
+
+/**
+ * Atomic access checker that verifies if the user has the admin role.
+ *
+ * @returns true if user is an admin, false otherwise
+ */
+export const isAdmin: Access = ({ req }) => {
+  if (req.user) {
+    return checkRole(['admin'], req.user)
+  }
+
+  return false
 }
-
