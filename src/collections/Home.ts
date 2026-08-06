@@ -1,6 +1,8 @@
 import type { GlobalConfig } from 'payload'
-import { anyone, isLoggedIn } from '../access'
-import { seoField } from '../fields/seo'
+
+import { anyone } from '@/access/anyone'
+import { isLoggedIn } from '@/access/isLoggedIn';
+import { seoField } from '@/fields/seo-field'
 
 // Global vì trang chủ chỉ có DUY NHẤT 1 bản ghi nội dung.
 export const Home: GlobalConfig = {

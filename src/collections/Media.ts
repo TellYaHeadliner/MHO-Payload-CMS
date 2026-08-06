@@ -1,6 +1,7 @@
-import { anyone } from '@/access/anyone'
-import { isLoggedIn } from '@/access/isLoggedIn'
 import type { CollectionConfig } from 'payload'
+
+import { anyone } from '@/access/anyone'
+import { isAdminOrEditor } from '@/access/isAdminOrEditor';
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -34,9 +35,9 @@ export const Media: CollectionConfig = {
   },
   access: {
     read: anyone, // ảnh cần public để hiển thị ngoài site
-    create: isLoggedIn,
-    update: isLoggedIn,
-    delete: isLoggedIn,
+    create: isAdminOrEditor,
+    update: isAdminOrEditor,
+    delete: isAdminOrEditor,
   },
   upload: {
     staticDir: 'media', // thư mục lưu file trên server (nếu không dùng cloud storage)
@@ -49,6 +50,5 @@ export const Media: CollectionConfig = {
     adminThumbnail: 'thumbnail',
     mimeTypes: ['image/*', 'audio/mp3'],
     focalPoint: true,
-    timestamps: true
   },
 }

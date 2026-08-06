@@ -1,5 +1,8 @@
 import { BackgroundAudio } from '@/components/background-audio';
-import { GalleryItem, GalleryLightbox } from '@/components/gallery-box';
+import { GalleryItem } from '@/components/gallery-box';
+import { GalleryLightbox } from '@/components/gallery-box'
+import { LightboxGallery } from '@/components/light-box-gallery';
+
 import Navbar from '@/components/navbar'
 import React from 'react'
 

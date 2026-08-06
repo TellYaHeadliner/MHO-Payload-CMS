@@ -1,6 +1,8 @@
 import type { GlobalConfig, Field } from 'payload'
+
 import { anyone } from '@/access/anyone'
 import { isLoggedIn } from '@/access/isLoggedIn'
+
 // 1 menu item, cho phép link nội bộ (page) hoặc link ngoài (custom URL)
 const navItem: Field = {
   name: 'items',

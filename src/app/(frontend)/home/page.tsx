@@ -1,7 +1,4 @@
-import Image from 'next/image'
 import Link from 'next/link'
-
-
 
 const Home = () => {
   const urlBg = 'https://www.myhealingosh-gallery.com/gallery/web-icon.webp'

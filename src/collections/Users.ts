@@ -20,7 +20,7 @@ export const Users: CollectionConfig = {
     create: isAdmin,
     update: isAdmin,
     delete: isAdmin,
-    admin: isLoggedIn, // ai được vào trang admin
+    // admin: isAdmin, // ai được vào trang admin
   },
   fields: [
     {
@@ -38,10 +38,10 @@ export const Users: CollectionConfig = {
         { label: 'Editor', value: 'editor' },
         { label: 'Viewer', value: 'viewer' },
       ],
-      access: {
-        // chỉ admin mới đổi được role của người khác
-        update: isAdmin,
-      },
+      // access: {
+      //   // chỉ admin mới đổi được role của người khác
+      //   update: isAdmin,
+      // },
     },
   ],
 }

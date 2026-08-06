@@ -1,13 +1,12 @@
 import type { GlobalConfig } from 'payload'
-
-import { adminOnly } from '@/access/adminOnly'
 import { link } from '@/fields/link'
+import { isAdmin } from '@/access/isAdmin';
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
   access: {
     read: () => true,
-    update: adminOnly
+    update: isAdmin
   },
   fields: [
     {

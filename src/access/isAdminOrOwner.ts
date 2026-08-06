@@ -1,4 +1,4 @@
-import { Access } from 'payload/config'
+import { Access } from 'payload'
 
 export const isAdminOrOwner: Access = ({ req: { user } }) => {
   // 1. Nếu chưa đăng nhập -> Từ chối truy cập

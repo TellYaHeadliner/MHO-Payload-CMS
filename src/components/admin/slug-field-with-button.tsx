@@ -65,7 +65,7 @@ const SlugFieldWithButton: React.FC<TextFieldClientProps> = ({ field, path }) =>
         <TextInput
           path={path}
           value={value || ''}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e: any) => setValue(e.target.value)}
           style={{ flexGrow: 1 }}
         />
 

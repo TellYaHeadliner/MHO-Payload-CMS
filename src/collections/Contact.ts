@@ -1,5 +1,7 @@
 import type { CollectionConfig } from 'payload'
-import { isAdminOrEditor, isLoggedIn } from '../access'
+import { isAdminOrEditor } from '@/access/isAdminOrEditor'
+import { isLoggedIn } from '@/access/isLoggedIn';
+
 
 // Collection lưu các submission từ form Contact trên site.
 // Ai cũng được TẠO (gửi form), nhưng chỉ người login mới đọc/sửa/xoá được.
@@ -10,7 +12,6 @@ export const Contact: CollectionConfig = {
     useAsTitle: 'fullName',
     defaultColumns: ['fullName', 'email', 'subject', 'status', 'createdAt'],
     group: 'Biểu mẫu',
-    defaultSort: '-createdAt',
   },
   access: {
     read: isLoggedIn,
@@ -52,8 +53,8 @@ export const Contact: CollectionConfig = {
         { label: 'Đã xử lý', value: 'resolved' },
       ],
       admin: { position: 'sidebar' },
-      // ẩn khỏi form public, chỉ admin panel set được
-      access: { update: isAdminOrEditor },
+      // Sẽ suy nghĩ phương án sau
+      // access: { update: isAdminOrEditor },
     },
     {
       name: 'internalNote',
@@ -62,7 +63,8 @@ export const Contact: CollectionConfig = {
         position: 'sidebar',
         description: 'Ghi chú nội bộ, không hiển thị công khai',
       },
-      access: { read: isLoggedIn },
+      // Không biết sao code được này nữa =))
+      // access: { read: isLoggedIn },
     },
   ],
 //   hooks: {

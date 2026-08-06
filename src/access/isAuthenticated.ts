@@ -1,4 +1,4 @@
-import { Access } from 'payload/config'
+import { Access } from 'payload'
 
 export const isAuthenticated: Access = ({ req: { user } }) => {
   return Boolean(user)

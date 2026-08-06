@@ -4,14 +4,16 @@ import type { TFunction } from '@payloadcms/translations'
 import { CustomTranslationsKeys } from '@/custom-translations'
 import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { slugField } from '@/fields/slug-field';
+import { isAdminOrEditor } from '@/access/isAdminOrEditor';
+import { isAdmin } from '@/access/isAdmin';
 
 export const Blog: CollectionConfig = {
   slug: 'blog',
   // Chỉ có 2 role admin / editor
   access: {
-    create: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
-    update: ({ req: { user } }) => Boolean(user?.role === 'admin' || user?.role === 'editor'),
-    delete: ({ req: { user } }) => Boolean(user?.role === 'admin'),
+    create: isAdminOrEditor,
+    update: isAdminOrEditor,
+    delete: isAdmin,
   },
   fields: [
     {

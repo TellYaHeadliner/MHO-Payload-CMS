@@ -1,4 +1,3 @@
-import { adminOnly } from '@/access/adminOnly';
 import { isAdmin } from '@/access/isAdmin';
 import { link } from '@/fields/link';
 import { AppRenderSpan } from 'next/dist/server/lib/trace/constants';
@@ -9,7 +8,7 @@ export const Header: GlobalConfig = {
   label: 'Header',
   access: {
     read: () => true,
-    update: adminOnly,
+    update: isAdmin,
   },
   fields: [
     {

@@ -1,7 +1,9 @@
 import { anyone } from '@/access/anyone';
+import { isAdmin } from '@/access/isAdmin';
 import { isLoggedIn } from '@/access/isLoggedIn';
 import { CustomTranslationsKeys } from '@/custom-translations';
 import { slugField } from '@/fields/slug-field';
+import { is } from '@payloadcms/db-postgres/drizzle';
 import { TFunction } from '@payloadcms/translations';
 import type { CollectionConfig } from 'payload'
 
@@ -14,9 +16,9 @@ export const Categories: CollectionConfig = {
   },
   access: {
     read: anyone,
-    create: isLoggedIn,
-    update: isLoggedIn,
-    delete: isLoggedIn,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {

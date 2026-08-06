@@ -19,5 +19,12 @@
     "title_label": "Category",
     "slug_label": "Slug",
     "parent_label": "Parent Categories"
+  },
+  "gallery": {
+    "title_label": "Title",
+    "description_label": "Description",
+    "music_label": "Music label",
+    "music_upload_label": "Music upload label",
+    "music_url_label": "URL music"
   }
 }
