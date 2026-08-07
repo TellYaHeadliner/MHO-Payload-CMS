@@ -1,5 +1,6 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
+import { sources } from 'next/dist/compiled/webpack/webpack';
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -32,6 +33,15 @@ const nextConfig: NextConfig = {
   },
   turbopack: {
     root: path.resolve(dirname),
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true, // true = 308 (vĩnh viễn), false = 307 (tạm thời)
+      },
+    ]
   },
 }
 
