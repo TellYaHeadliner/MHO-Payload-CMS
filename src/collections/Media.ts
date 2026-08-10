@@ -40,6 +40,7 @@ export const Media: CollectionConfig = {
     delete: isAdminOrEditor,
   },
   upload: {
+    disableLocalStorage: true,
     staticDir: 'media', // thư mục lưu file trên server (nếu không dùng cloud storage)
     imageSizes: [
       {

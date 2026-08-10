@@ -67,7 +67,6 @@ export default buildConfig({
       },
       token: process.env.BLOB_READ_WRITE_TOKEN, // lấy từ Vercel Dashboard
       addRandomSuffix: false, // false = giữ nguyên tên file gốc (cẩn thận trùng tên)
-      cacheControlMaxAge: 31536000, // cache 1 năm (tùy chọn)
     }),
   ],
   i18n: {

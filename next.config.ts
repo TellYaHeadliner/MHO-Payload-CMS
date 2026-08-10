@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [
       {
-        pathname: '/api/media/file/**',
+        pathname: process.env.BLOB_URL + '/public/*',
       },
     ],
     remotePatterns: [
