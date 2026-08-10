@@ -41,14 +41,29 @@ export const Media: CollectionConfig = {
   },
   upload: {
     staticDir: 'media', // thư mục lưu file trên server (nếu không dùng cloud storage)
-    // Check sau
-    // imageSizes: [
-    //   { name: 'thumbnail', width: 300, height: 300, position: 'centre' },
-    //   { name: 'card', width: 640, height: 480, position: 'centre' },
-    //   { name: 'og', width: 1200, height: 630, position: 'centre' }, // dùng cho social share
-    // ],
+    imageSizes: [
+      {
+        name: 'thumbnail',
+        width: 400,
+        height: 300,
+        position: 'centre'
+      },
+      {
+        name: 'card',
+        width: 700,
+        height: 1024,
+        position: 'center'
+      },
+      {
+        name: 'tablet',
+        width: 1024,
+        height: undefined,
+        position: 'centre'
+      }
+    ],
     adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/*', 'audio/mp3'],
+    mimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/jpg','image/svg', 'image/webp','audio/mp3'],
     focalPoint: true,
+    crop: true,
   },
 }

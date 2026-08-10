@@ -5,4 +5,7 @@ body { background-color: #000; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 .gallery-image { user-select: none; -webkit-user-drag: none; cursor: zoom-in; transition: transform .4s ease, opacity .4s ease; }
 .masonry-item:hover .gallery-image { transform: scale(1.03); opacity: .9; }
-
+.text-vibrant-yellow{
+    --tw-text-opacity: 1;
+    color: rgb(249 233 0 / var(--tw-text-opacity, 1));
+}
