@@ -67,6 +67,7 @@ export default buildConfig({
       },
       token: process.env.BLOB_READ_WRITE_TOKEN, // lấy từ Vercel Dashboard
       addRandomSuffix: false, // false = giữ nguyên tên file gốc (cẩn thận trùng tên)
+      clientUploads: true, 
     }),
   ],
   i18n: {
