@@ -65,5 +65,13 @@ export const Media: CollectionConfig = {
     mimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/jpg','image/svg', 'image/webp','audio/mp3'],
     focalPoint: true,
     crop: true,
+    pasteURL: {
+      allowList: [
+        {
+          hostname: 'https://www.myhealingosh-gallery.com',
+          protocol: 'https'
+        }
+      ]
+    }
   },
 }

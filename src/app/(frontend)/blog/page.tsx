@@ -2,8 +2,6 @@
 
 import Navbar from '@/components/navbar'
 
-const url = 'https://www.myhealingosh-gallery.com/'
-
 
 const Blog = () => {
     return (
