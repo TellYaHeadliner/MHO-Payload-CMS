@@ -1,5 +1,9 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import {
+  FixedToolbarFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -7,16 +11,17 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Blog } from '@/collections/Blog';
-import { Categories } from '@/collections/Categories';
-import { en } from '@payloadcms/translations/languages/en';
-import { vi } from '@payloadcms/translations/languages/vi';
+import { Blog } from '@/collections/Blog'
+import { Categories } from '@/collections/Categories'
+import { en } from '@payloadcms/translations/languages/en'
+import { vi } from '@payloadcms/translations/languages/vi'
 
-import enTrans from "@/locales/en.json";
-import { customTranslations } from '@/custom-translations';
-import { Gallery } from '@/collections/Gallery';
-import { Header } from '@/globals/header';
-import { Footer } from '@/globals/footer';
+import enTrans from '@/locales/en.json'
+import { customTranslations } from '@/custom-translations'
+import { Gallery } from '@/collections/Gallery'
+import { Header } from '@/globals/header'
+import { Footer } from '@/globals/footer'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 // import viTrans from "@/locales/vi.json";
 
 const filename = fileURLToPath(import.meta.url)
@@ -29,10 +34,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [
-    Header,
-    Footer
-  ],
+  globals: [Header, Footer],
   collections: [Users, Media, Blog, Categories, Gallery],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
@@ -49,10 +51,25 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
-    push: true
+    push: true,
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    vercelBlobStorage({
+      enabled: true,
+      // Chỉ định collection nào dùng Vercel Blob làm nơi lưu file
+      collections: {
+        media: true,
+        // ví dụ nếu bạn có nhiều collection upload khác nhau:
+        // gallery: {
+        //   prefix: 'gallery/', // ảnh sẽ được lưu dưới dạng gallery/<filename>
+        // },
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN, // lấy từ Vercel Dashboard
+      addRandomSuffix: false, // false = giữ nguyên tên file gốc (cẩn thận trùng tên)
+      cacheControlMaxAge: 31536000, // cache 1 năm (tùy chọn)
+    }),
+  ],
   i18n: {
     fallbackLanguage: 'en',
     supportedLanguages: { en, vi },

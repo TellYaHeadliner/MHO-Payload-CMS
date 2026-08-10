@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
         hostname: 'www.myhealingosh-gallery.com',
         pathname: '/gallery/**'
       },
+      {
+        protocol: 'https',
+        hostname: "https://fkkbk5wmhk57gsqa.public.blob.vercel-storage.com",
+      }
     ],
   },
   webpack: (webpackConfig) => {
