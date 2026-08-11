@@ -20,8 +20,8 @@ export const Home: GlobalConfig = {
         {
           label: 'Hero',
           fields: [
-            { name: 'heroTitle', type: 'text', required: true },
-            { name: 'heroSubtitle', type: 'textarea' },
+            { name: 'heroTitle', type: 'text', required: true, localized: true },
+            { name: 'heroSubtitle', type: 'textarea', localized: true },
             { name: 'heroImage', type: 'upload', relationTo: 'media' },
             {
               name: 'heroButtons',
@@ -37,8 +37,8 @@ export const Home: GlobalConfig = {
         {
           label: 'Giới thiệu',
           fields: [
-            { name: 'aboutTitle', type: 'text' },
-            { name: 'aboutContent', type: 'textarea' },
+            { name: 'aboutTitle', type: 'text', localized: true },
+            { name: 'aboutContent', type: 'textarea', localized: true },
             { name: 'aboutImage', type: 'upload', relationTo: 'media' },
           ],
         },

@@ -18,11 +18,11 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
-    "@payloadcms/db-postgres": "3.86.0",
+    "@payloadcms/db-postgres": "3.87.1",
     "@payloadcms/next": "^3.87.1",
     "@payloadcms/richtext-lexical": "^3.87.1",
     "@payloadcms/storage-vercel-blob": "^3.87.1",
-    "@payloadcms/translations": "^3.86.0",
+    "@payloadcms/translations": "^3.87.1",
     "@payloadcms/ui": "^3.87.1",
     "@tailwindcss/postcss": "^4.3.3",
     "clsx": "^2.1.1",

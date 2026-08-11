@@ -24,6 +24,7 @@ export const Blog: CollectionConfig = {
         return t('createblog:title_label')
       },
       required: true,
+      localized: true,
     },
     slugField('title'),
     {
@@ -34,6 +35,7 @@ export const Blog: CollectionConfig = {
         const t = defaultT as TFunction<CustomTranslationsKeys>
         return t('createblog:description_label')
       },
+      localized: true
     },
     {
       name: 'summary',
@@ -53,6 +55,7 @@ export const Blog: CollectionConfig = {
           InlineToolbarFeature(),
         ],
       }),
+      localized: true
     },
     {
       name: 'gallery',

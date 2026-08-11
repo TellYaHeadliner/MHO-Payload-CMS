@@ -75,4 +75,18 @@ export default buildConfig({
     supportedLanguages: { en, vi },
     translations: customTranslations,
   },
+  localization: {
+    locales: [
+      {
+        label: 'Tiếng Việt',
+        code: 'vi'
+      },
+      {
+        label: 'English',
+        code: 'en'
+      }
+    ],
+    defaultLocale: 'en',
+    fallback: true
+  }
 })
