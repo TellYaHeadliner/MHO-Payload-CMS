@@ -1,3 +1,4 @@
+import { ContentBlock } from './../blocks/contentblock';
 import type { CollectionConfig } from 'payload'
 import type { TFunction } from '@payloadcms/translations'
 
@@ -6,6 +7,10 @@ import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@paylo
 import { slugField } from '@/fields/slug-field';
 import { isAdminOrEditor } from '@/access/isAdminOrEditor';
 import { isAdmin } from '@/access/isAdmin';
+import { Marquee } from '@/blocks/marqueeblock';
+import { HeroBanner } from '@/blocks/herobannerblock';
+import { GalleryBlock } from '@/blocks/galleryblock';
+import { CarouselBlock } from '@/blocks/carouselblock';
 
 export const Blog: CollectionConfig = {
   slug: 'blog',
@@ -16,6 +21,7 @@ export const Blog: CollectionConfig = {
     delete: isAdmin,
   },
   fields: [
+
     {
       name: 'title',
       type: 'text',
@@ -46,38 +52,6 @@ export const Blog: CollectionConfig = {
       type: 'textarea',
     },
     {
-      name: 'content',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [
-          ...defaultFeatures,
-          FixedToolbarFeature(),
-          InlineToolbarFeature(),
-        ],
-      }),
-      localized: true
-    },
-    {
-      name: 'gallery',
-      type: 'array',
-      fields: [
-        {
-          name: 'image',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-        },
-        {
-          name: 'caption',
-          type: 'text',
-        },
-        {
-          name: 'altText',
-          type: 'text',
-        },
-      ],
-    },
-    {
       name: 'categories',
       type: 'relationship',
       relationTo: 'categories',
@@ -87,6 +61,21 @@ export const Blog: CollectionConfig = {
       type: 'relationship',
       relationTo: 'users',
       required: true,
+    },
+    {
+      name: 'layout',
+      type: 'blocks',
+      admin: {
+        position: "main",
+        description: "Nơi sắp xếp section của page"
+      },
+      blocks: [
+        Marquee,
+        HeroBanner,
+        GalleryBlock,
+        ContentBlock,
+        CarouselBlock
+      ]
     },
   ],
 }

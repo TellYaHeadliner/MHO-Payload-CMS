@@ -6,8 +6,8 @@ export const Marquee: Block = {
         {
             name: 'title',
             type: 'array',
-            minRows: 1,
-            maxRows: 1,
+            minRows: 5,
+            maxRows: 5,
             label: 'Marquee Items',
             fields: [
                 {
