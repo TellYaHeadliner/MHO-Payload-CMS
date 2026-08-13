@@ -96,10 +96,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    home: Home;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    home: HomeSelect<false> | HomeSelect<true>;
   };
   locale: 'vi' | 'en';
   widgets: {
@@ -388,6 +390,10 @@ export interface Gallery {
   id: number;
   title: string;
   description?: string | null;
+  /**
+   * Auto-generated from the title if left blank.
+   */
+  slug: string;
   images?:
     | {
         image: number | Media;
@@ -717,6 +723,7 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface GallerySelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  slug?: T;
   images?:
     | T
     | {
@@ -854,6 +861,45 @@ export interface Footer {
   createdAt?: string | null;
 }
 /**
+ * Nội dung hiển thị ở trang chủ (hero, social links, danh mục điều hướng). Chỉ 1 bản ghi duy nhất.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: number;
+  background?: {
+    type?: ('image' | 'video') | null;
+    image?: (number | null) | Media;
+    video?: (number | null) | Media;
+    /**
+     * Độ tối lớp phủ (0–100%) để chữ dễ đọc
+     */
+    overlayOpacity?: number | null;
+  };
+  /**
+   * Phần chữ đứng (không in nghiêng)
+   */
+  titleRegular: string;
+  /**
+   * Phần chữ in nghiêng, ghép liền vào cuối titleRegular
+   */
+  titleItalic?: string | null;
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'instagram' | 'tiktok' | 'youtube' | 'pinterest' | 'twitter';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Chọn các category hiển thị làm nút trên Home, kéo thả để sắp xếp thứ tự
+   */
+  navCategories: (number | Gallery)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
@@ -917,6 +963,33 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        image?: T;
+        video?: T;
+        overlayOpacity?: T;
+      };
+  titleRegular?: T;
+  titleItalic?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  navCategories?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

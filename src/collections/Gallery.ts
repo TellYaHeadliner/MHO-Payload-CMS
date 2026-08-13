@@ -1,7 +1,8 @@
 import { isAdminOrEditor } from '@/access/isAdminOrEditor'
 import { TFunction } from '@payloadcms/translations'
-import type { CollectionConfig } from 'payload'
+import { slugField } from "@/fields/slug-field"
 import { CustomTranslationsKeys } from '@/custom-translations'
+import { CollectionConfig } from 'payload';
 
 export const Gallery: CollectionConfig = {
   slug: 'gallery',
@@ -9,6 +10,10 @@ export const Gallery: CollectionConfig = {
     create: isAdminOrEditor,
     update: isAdminOrEditor,
     delete: isAdminOrEditor,
+  },
+  admin: {
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'description', 'updatedAt', 'slug'],
   },
   fields: [
     {
@@ -28,6 +33,7 @@ export const Gallery: CollectionConfig = {
         return t('gallery:description_label')
       },
     },
+    slugField('title'),
     {
       name: 'images',
       type: 'array',

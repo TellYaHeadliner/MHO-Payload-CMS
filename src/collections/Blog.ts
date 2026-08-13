@@ -75,7 +75,7 @@ export const Blog: CollectionConfig = {
         GalleryBlock,
         ContentBlock,
         CarouselBlock
-      ]
+      ],
     },
   ],
 }

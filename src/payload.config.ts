@@ -21,6 +21,7 @@ import { customTranslations } from '@/custom-translations'
 import { Gallery } from '@/collections/Gallery'
 import { Header } from '@/globals/header'
 import { Footer } from '@/globals/footer'
+import { Home } from '@/globals/home';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 // import viTrans from "@/locales/vi.json";
 
@@ -34,7 +35,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [Header, Footer],
+  globals: [Header, Footer, Home],
   collections: [Users, Media, Blog, Categories, Gallery],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
