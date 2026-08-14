@@ -72,6 +72,7 @@ export interface Config {
     blog: Blog;
     categories: Category;
     gallery: Gallery;
+    audio: Audio;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     blog: BlogSelect<false> | BlogSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
+    audio: AudioSelect<false> | AudioSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -191,14 +193,6 @@ export interface Media {
       filename?: string | null;
     };
     card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    tablet?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -404,7 +398,7 @@ export interface Gallery {
     | null;
   music?: {
     sourceType?: ('upload' | 'url') | null;
-    audioFile?: (number | null) | Media;
+    audioFile?: (number | null) | Audio;
     /**
      * Spotify URL
      */
@@ -412,6 +406,29 @@ export interface Gallery {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audio".
+ */
+export interface Audio {
+  id: number;
+  /**
+   * Bắt buộc cho SEO & accessibility
+   */
+  alt: string;
+  caption?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -456,6 +473,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gallery';
         value: number | Gallery;
+      } | null)
+    | ({
+        relationTo: 'audio';
+        value: number | Audio;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -556,16 +577,6 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
         card?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        tablet?:
           | T
           | {
               url?: T;
@@ -741,6 +752,25 @@ export interface GallerySelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audio_select".
+ */
+export interface AudioSelect<T extends boolean = true> {
+  alt?: T;
+  caption?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

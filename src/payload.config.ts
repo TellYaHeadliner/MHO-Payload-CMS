@@ -23,6 +23,7 @@ import { Header } from '@/globals/header'
 import { Footer } from '@/globals/footer'
 import { Home } from '@/globals/home';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { Audio } from './collections/Audio';
 // import viTrans from "@/locales/vi.json";
 
 const filename = fileURLToPath(import.meta.url)
@@ -36,7 +37,7 @@ export default buildConfig({
     },
   },
   globals: [Header, Footer, Home],
-  collections: [Users, Media, Blog, Categories, Gallery],
+  collections: [Users, Media, Blog, Categories, Gallery, Audio],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,

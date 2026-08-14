@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { getPayload } from 'payload';
 import configPromise from '@payload-config'
 import Title from './_components/title';

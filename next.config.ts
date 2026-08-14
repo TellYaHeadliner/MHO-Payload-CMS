@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
       {
         pathname: process.env.BLOB_URL + '/public/*',
       },
+      {
+        pathname: '/api/media/file/**',
+        search: '',
+      },
     ],
     remotePatterns: [
       {
@@ -23,7 +27,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: "https://fkkbk5wmhk57gsqa.public.blob.vercel-storage.com",
-      }
+      },
     ],
   },
   webpack: (webpackConfig) => {

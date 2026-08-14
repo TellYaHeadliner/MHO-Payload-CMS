@@ -1,8 +1,8 @@
 import { isAdminOrEditor } from '@/access/isAdminOrEditor'
 import { TFunction } from '@payloadcms/translations'
-import { slugField } from "@/fields/slug-field"
+import { slugField } from '@/fields/slug-field'
 import { CustomTranslationsKeys } from '@/custom-translations'
-import { CollectionConfig } from 'payload';
+import { CollectionConfig } from 'payload'
 
 export const Gallery: CollectionConfig = {
   slug: 'gallery',
@@ -90,7 +90,7 @@ export const Gallery: CollectionConfig = {
             const t = defaultT as TFunction<CustomTranslationsKeys>
             return t('gallery:music_upload_label')
           },
-          relationTo: 'media',
+          relationTo: 'audio',    
           admin: {
             condition: (data, siblingData) => siblingData?.sourceType === 'upload', // ✅ khớp tên
           },

@@ -1,20 +1,19 @@
 'use client'
 import { cn } from '@/utils/cn';
 import React, { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
+import { type Gallery, type Media } from "@/payload-types"
 
-export interface GalleryItem {
-  id: string | number
-  src: string
-  alt: string
-}
+type GalleryImages = NonNullable<Gallery['images']>;
+type GalleryImageItem = GalleryImages[number];
 
 interface GalleryProps {
-  images: GalleryItem[]
+  images: GalleryImages;
   classImage?: string;
 }
 
 export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) => {
-  const [activeImage, setActiveImage] = useState<string | null>(null)
+  const [activeImage, setActiveImage] = useState<Media | null>(null)
 
   const closeLightbox = useCallback((): void => {
     setActiveImage(null)
@@ -29,7 +28,6 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
       }
     }
 
-    // Lock scroll body khi mở modal
     document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', handleKeyDown)
 
@@ -39,37 +37,59 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
     }
   }, [activeImage, closeLightbox])
 
+  const getMedia = (img: GalleryImageItem): Media | null => {
+    if (typeof img.image === 'object' && img.image !== null) {
+      return img.image as Media
+    }
+    return null
+  }
+
   return (
     <>
       {/* Grid Hình ảnh */}
-      {images.map((img) => (
-        <div
-          key={img.id}
-          className="group overflow-hidden rounded-sm cursor-pointer"
-          onClick={() => setActiveImage(img.src)}
-        >
-          <img
-            src={img.src}
-            alt={img.alt}
-            loading="lazy"
-            className={cn('gallery-image w-full h-auto transition-transform duration-400 ease-in-out group-hover:scale-[1.03] group-hover:opacity-90 select-none', classImage)}
-          />
-        </div>
-      ))}
+      {images.map((img, idx) => {
+        const media = getMedia(img)
+        console.log(media)
+        if (!media?.url) return null
+
+        return (
+          <div
+            key={img.id ?? idx}
+            className="group relative aspect-square overflow-hidden rounded-sm cursor-pointer"
+            onClick={() => setActiveImage(media)}
+          >
+            <Image
+              src={media.url}
+              alt={img.altText ?? img.caption ?? media.alt ?? ''}
+              width={Number(media.width)}
+              height={Number(media.height)}
+              loading="lazy"
+              className={cn(
+                'gallery-image w-full h-auto transition-transform duration-400 ease-in-out group-hover:scale-[1.03] group-hover:opacity-90 select-none',
+                classImage
+              )}
+            />
+          </div>
+        )
+      })}
 
       {/* Lightbox Modal */}
-      {activeImage && (
+      {activeImage?.url && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 cursor-zoom-out"
           onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
         >
-          <img
-            src={activeImage}
-            alt="Enlarged view"
-            className="max-h-[92vh] max-w-[92vw] object-contain select-none"
-          />
+          <div className="relative w-[92vw] h-[92vh]">
+            <Image
+              src={activeImage.url}
+              alt="Enlarged view"
+              fill
+              sizes="92vw"
+              className="object-contain select-none"
+            />
+          </div>
         </div>
       )}
     </>

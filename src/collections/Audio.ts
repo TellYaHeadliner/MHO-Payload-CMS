@@ -3,8 +3,8 @@ import type { CollectionConfig } from 'payload'
 import { anyone } from '@/access/anyone'
 import { isAdminOrEditor } from '@/access/isAdminOrEditor';
 
-export const Media: CollectionConfig = {
-  slug: 'media',
+export const Audio: CollectionConfig = {
+  slug: 'audio',
   fields: [
     {
       name: 'alt',
@@ -15,17 +15,6 @@ export const Media: CollectionConfig = {
     {
       name: 'caption',
       type: 'text',
-    },
-    {
-      name: 'category',
-      type: 'select',
-      options: [
-        { label: 'Hình ảnh chung', value: 'general' },
-        { label: 'Blog', value: 'blog' },
-        { label: 'Gallery', value: 'gallery' },
-        { label: 'Logo / Branding', value: 'branding' },
-      ],
-      defaultValue: 'general',
     },
   ],
   admin: {
@@ -42,24 +31,8 @@ export const Media: CollectionConfig = {
   upload: {
     disableLocalStorage: true,
     staticDir: 'media', // thư mục lưu file trên server (nếu không dùng cloud storage)
-    imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 1920,
-        height: 1080,
-        position: 'centre'
-      },
-      {
-        name: 'card',
-        width: 612,
-        height: 612,
-        position: 'center'
-      },
-    ],
     adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/jpg', 'image/svg', 'image/webp', 'audio/*'],
-    focalPoint: true,
-    crop: true,
+    mimeTypes: ['audio/*'],
     pasteURL: false
   },
 }
