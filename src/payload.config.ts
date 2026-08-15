@@ -62,6 +62,7 @@ export default buildConfig({
       // Chỉ định collection nào dùng Vercel Blob làm nơi lưu file
       collections: {
         media: true,
+        audio: true
         // ví dụ nếu bạn có nhiều collection upload khác nhau:
         // gallery: {
         //   prefix: 'gallery/', // ảnh sẽ được lưu dưới dạng gallery/<filename>
@@ -69,7 +70,7 @@ export default buildConfig({
       },
       token: process.env.BLOB_READ_WRITE_TOKEN, // lấy từ Vercel Dashboard
       addRandomSuffix: false, // false = giữ nguyên tên file gốc (cẩn thận trùng tên)
-      clientUploads: true, 
+      clientUploads: false, 
     }),
   ],
   i18n: {

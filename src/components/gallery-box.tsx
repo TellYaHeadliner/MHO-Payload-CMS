@@ -8,7 +8,7 @@ type GalleryImages = NonNullable<Gallery['images']>;
 type GalleryImageItem = GalleryImages[number];
 
 interface GalleryProps {
-  images: GalleryImages;
+  images: GalleryImages | undefined | null;
   classImage?: string;
 }
 
@@ -47,9 +47,8 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
   return (
     <>
       {/* Grid Hình ảnh */}
-      {images.map((img, idx) => {
+      {images?.map((img, idx) => {
         const media = getMedia(img)
-        console.log(media)
         if (!media?.url) return null
 
         return (

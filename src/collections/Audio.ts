@@ -29,10 +29,8 @@ export const Audio: CollectionConfig = {
     delete: isAdminOrEditor,
   },
   upload: {
-    disableLocalStorage: true,
     staticDir: 'media', // thư mục lưu file trên server (nếu không dùng cloud storage)
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['audio/*'],
+    mimeTypes: ['audio/*', 'audio/wav', 'audio/x-wav', 'audio/wave'],
     pasteURL: false
   },
 }
