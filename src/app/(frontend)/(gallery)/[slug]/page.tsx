@@ -9,6 +9,31 @@ import { BackgroundAudio } from '@/components/background-audio';
 import type { Audio, Gallery } from "@/payload-types" 
 import Link from 'next/link';
 import { GetAudioType } from '@/utils/getAudioType';
+import { Metadata } from 'next';
+import { setMetaData } from '@/utils/setMetadata';
+
+export async function generateMetadata({ params }: Args): Promise<Metadata> {
+  const { slug } = await params
+  const payload = await getPayload({ config: configPromise })
+
+  const result = await payload.find({
+    collection: 'gallery',
+    where: {
+      slug: { equals: slug },
+    },
+    depth: 2,
+    locale: 'vi',
+    limit: 1,
+  })
+
+  const item = result.docs?.[0]
+
+  if (!item) {
+    return setMetaData('Không tìm thấy', 'Trang không tồn tại')
+  }
+
+  return setMetaData(item.title, item.description)
+}
 
 type Args = {
   params: Promise<{ slug: string }>
@@ -38,11 +63,13 @@ export default async function Gallery({ params }: Args) {
 
   const getAudioType = new GetAudioType(item)
 
+
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4">
         <Title title={item.title} />
+
+      <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <GalleryLightbox
             images={item.images}

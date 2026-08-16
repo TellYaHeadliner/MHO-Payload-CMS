@@ -21,7 +21,7 @@ export const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
   const [isPlaying, setIsPlaying] = useState(false)
 
   return (
-    <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4 mt-4">
+    <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4">
       <div className="bg-white/5 border border-white/15 rounded-lg p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5 fade-in visible">
         <div className="flex-1">
           <p className="text-white/50 text-xs uppercase tracking-widest mb-1">
