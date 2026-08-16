@@ -6,24 +6,12 @@ import Navbar from '@/components/navbar'
 import Title from './_components/title'
 import { GalleryLightbox } from '@/components/gallery-box'
 import { BackgroundAudio } from '@/components/background-audio';
-import type { Gallery } from "@/payload-types" 
+import type { Audio, Gallery } from "@/payload-types" 
 import Link from 'next/link';
+import { GetAudioType } from '@/utils/getAudioType';
 
 type Args = {
   params: Promise<{ slug: string }>
-}
-
-function getAudioFileSrc(gallery: Gallery): string | null {
-  const audioFile = gallery.music?.audioFile;
-
-  console.log(audioFile)
-  if (audioFile && typeof audioFile === 'object') {
-    console.log(audioFile.url)
-    return audioFile.url ?? null; // tuỳ Audio type có field `url` không, xem lại definition
-  }
-
-
-  return null; // chưa populate (chỉ là id number) hoặc null
 }
 
 export default async function Gallery({ params }: Args) {
@@ -43,11 +31,12 @@ export default async function Gallery({ params }: Args) {
   })
 
   const item = result.docs?.[0]
-  console.log(item)
 
   if (!item) {
     return notFound()
   }
+
+  const getAudioType = new GetAudioType(item)
 
   return (
     <>
@@ -63,9 +52,10 @@ export default async function Gallery({ params }: Args) {
       </div>
 
       <BackgroundAudio
-        src={getAudioFileSrc(item) ?? ''}
+        src={getAudioType.getAudioUrl()}
+        type={getAudioType.getAudioMineType()}
+        alt={getAudioType.getAudioAlt()}
       />
-
       {/* Back to Home */}
       <div className="bg-black py-12 text-center">
         <Link

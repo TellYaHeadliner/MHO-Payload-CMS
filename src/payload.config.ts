@@ -63,10 +63,6 @@ export default buildConfig({
       collections: {
         media: true,
         audio: true
-        // ví dụ nếu bạn có nhiều collection upload khác nhau:
-        // gallery: {
-        //   prefix: 'gallery/', // ảnh sẽ được lưu dưới dạng gallery/<filename>
-        // },
       },
       token: process.env.BLOB_READ_WRITE_TOKEN, // lấy từ Vercel Dashboard
       addRandomSuffix: false, // false = giữ nguyên tên file gốc (cẩn thận trùng tên)
