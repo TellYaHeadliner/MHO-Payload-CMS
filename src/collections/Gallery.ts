@@ -14,6 +14,12 @@ export const Gallery: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'description', 'updatedAt', 'slug'],
+    preview: ({ data }) => `${process.env.NEXT_PUBLIC_SERVER_URL}`,
+    components: {
+      edit: {
+        PreviewButton: '@/components/admin/button-live-preview',
+      },
+    },
   },
   fields: [
     {
@@ -90,7 +96,7 @@ export const Gallery: CollectionConfig = {
             const t = defaultT as TFunction<CustomTranslationsKeys>
             return t('gallery:music_upload_label')
           },
-          relationTo: 'audio',    
+          relationTo: 'audio',
           admin: {
             condition: (data, siblingData) => siblingData?.sourceType === 'upload', // ✅ khớp tên
           },

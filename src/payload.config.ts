@@ -24,6 +24,7 @@ import { Footer } from '@/globals/footer'
 import { Home } from '@/globals/home';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Audio } from './collections/Audio';
+import { PreviewButton } from '@payloadcms/ui';
 // import viTrans from "@/locales/vi.json";
 
 const filename = fileURLToPath(import.meta.url)
@@ -35,7 +36,23 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+
+    livePreview: {
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}`, 
+      collections: ['pages'],
+      breakpoints: [
+        {
+          label: 'PC',
+          name: 'pc',
+          width: 1920,
+          height: 1080
+        }
+      ]
+    },
+    
   },
+  cors: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
+  csrf: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
   globals: [Header, Footer, Home],
   collections: [Users, Media, Blog, Categories, Gallery, Audio],
   editor: lexicalEditor({

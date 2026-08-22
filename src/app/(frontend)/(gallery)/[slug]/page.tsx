@@ -6,7 +6,7 @@ import Navbar from '@/components/navbar'
 import Title from './_components/title'
 import { GalleryLightbox } from '@/components/gallery-box'
 import { BackgroundAudio } from '@/components/background-audio';
-import type { Audio, Gallery } from "@/payload-types" 
+import type { Gallery } from "@/payload-types" 
 import Link from 'next/link';
 import { GetAudioType } from '@/utils/getAudioType';
 import { Metadata } from 'next';
@@ -37,11 +37,15 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
 
 type Args = {
   params: Promise<{ slug: string }>
+  searchParams: Promise<{
+    isDraft?: string
+  }>
 }
 
-export default async function Gallery({ params }: Args) {
+export default async function Gallery({ params, searchParams }: Args) {
   const { slug } = await params
-  const { isEnabled: draft } = await draftMode()
+  const { isDraft } = await searchParams
+  const isDraftMode = isDraft === 'true'
   const payload = await getPayload({ config: configPromise })
 
   const result = await payload.find({
@@ -50,7 +54,7 @@ export default async function Gallery({ params }: Args) {
       slug: { equals: slug },
     },
     depth: 2,
-    draft,
+    draft: isDraftMode,
     locale: 'vi',
     limit: 1,
   })
