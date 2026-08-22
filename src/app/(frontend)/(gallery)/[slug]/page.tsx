@@ -6,11 +6,13 @@ import Navbar from '@/components/navbar'
 import Title from './_components/title'
 import { GalleryLightbox } from '@/components/gallery-box'
 import { BackgroundAudio } from '@/components/background-audio';
-import type { Gallery } from "@/payload-types" 
+import type { Gallery } from "@/payload-types"
 import Link from 'next/link';
 import { GetAudioType } from '@/utils/getAudioType';
 import { Metadata } from 'next';
 import { setMetaData } from '@/utils/setMetadata';
+import SpotifyEmbed from './_components/spotify-embed';
+import { Spotify } from 'react-spotify-embed';
 
 export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { slug } = await params
@@ -71,7 +73,7 @@ export default async function Gallery({ params, searchParams }: Args) {
   return (
     <>
       <Navbar />
-        <Title title={item.title} />
+      <Title title={item.title} />
 
       <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -81,12 +83,26 @@ export default async function Gallery({ params, searchParams }: Args) {
           />
         </div>
       </div>
+      {
+        getAudioType?.getAudioUrl() ? (
+          <BackgroundAudio
+            src={getAudioType.getAudioUrl()}
+            type={getAudioType.getAudioMineType()}
+            alt={getAudioType.getAudioAlt()}
+          />
+        ) : null
+      }
 
-      <BackgroundAudio
-        src={getAudioType.getAudioUrl()}
-        type={getAudioType.getAudioMineType()}
-        alt={getAudioType.getAudioAlt()}
-      />
+      {
+        item.music?.spotifyUrl ? (
+          <Spotify
+            className="max-w-7xl mx-auto px-3 md:px-5 h-full"
+            wide
+            link={String(item.music?.spotifyUrl)}
+          />
+        ) : null
+      }
+
       {/* Back to Home */}
       <div className="bg-black py-12 text-center">
         <Link
