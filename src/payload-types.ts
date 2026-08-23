@@ -183,24 +183,6 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -222,6 +204,7 @@ export interface Blog {
    */
   layout?:
     | (
+        | ContentBlock
         | {
             title?:
               | {
@@ -234,76 +217,7 @@ export interface Blog {
             blockName?: string | null;
             blockType: 'marquee';
           }
-        | {
-            /**
-             * Mỗi slide = 1 background + nội dung riêng. "01 / 02" ở dưới sẽ tự tính theo số lượng slide.
-             */
-            slides?:
-              | {
-                  backgroundImage: number | Media;
-                  eyebrow?: string | null;
-                  title: string;
-                  subtitle?: string | null;
-                  button: {
-                    label?: string | null;
-                    url: string;
-                    openInNewTab?: boolean | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            overlayStyle?: ('gradient-bottom' | 'flat' | 'none') | null;
-            /**
-             * Độ đậm của overlay/gradient tại điểm tối nhất (%)
-             */
-            overlayOpacity?: number | null;
-            contentAlignment?: ('bottom-left' | 'center' | 'left') | null;
-            autoplay?: boolean | null;
-            /**
-             * Số giây mỗi slide hiển thị trước khi tự chuyển
-             */
-            autoplayDuration?: number | null;
-            showArrows?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'herobanner';
-          }
         | GalleryBlock
-        | ContentBlock
-        | {
-            slides?:
-              | {
-                  image: number | Media;
-                  eyebrow?: string | null;
-                  title?: string | null;
-                  description?: string | null;
-                  link?: {
-                    label?: string | null;
-                    url?: string | null;
-                    openInNewTab?: boolean | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            loop?: boolean | null;
-            align?: ('start' | 'center' | 'end') | null;
-            slidesToShow?: ('1' | '2' | '3' | '4') | null;
-            gap?: number | null;
-            dragFree?: boolean | null;
-            effect?: ('slide' | 'fade') | null;
-            autoplay?: boolean | null;
-            autoplayDelay?: number | null;
-            stopOnInteraction?: boolean | null;
-            pauseOnHover?: boolean | null;
-            showArrows?: boolean | null;
-            navigationStyle?: ('counter' | 'dots' | 'progress' | 'none') | null;
-            variant?: ('hero' | 'card' | 'logo') | null;
-            height?: ('full' | 'large' | 'medium') | null;
-            overlayOpacity?: number | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'carousel';
-          }
       )[]
     | null;
   updatedAt: string;
@@ -329,33 +243,9 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "GalleryBlock".
- */
-export interface GalleryBlock {
-  heading?: string | null;
-  layout?: ('grid' | 'carousel' | 'masonry') | null;
-  columns?: ('2' | '3' | '4') | null;
-  images?:
-    | {
-        image: number | Media;
-        caption?: string | null;
-        /**
-         * Dùng cho SEO và accessibility
-         */
-        alt?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'gallery';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
-  heading?: string | null;
   richText?: {
     root: {
       type: string;
@@ -371,10 +261,26 @@ export interface ContentBlock {
     };
     [k: string]: unknown;
   } | null;
-  layout?: ('oneColumn' | 'twoColumn') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock".
+ */
+export interface GalleryBlock {
+  images: {
+    image: number | Media;
+    caption?: string | null;
+    /**
+     * Dùng cho SEO và accessibility
+     */
+    alt?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -563,30 +469,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-  sizes?:
-    | T
-    | {
-        thumbnail?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        card?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -602,6 +484,7 @@ export interface BlogSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        content?: T | ContentBlockSelect<T>;
         marquee?:
           | T
           | {
@@ -615,104 +498,32 @@ export interface BlogSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        herobanner?:
-          | T
-          | {
-              slides?:
-                | T
-                | {
-                    backgroundImage?: T;
-                    eyebrow?: T;
-                    title?: T;
-                    subtitle?: T;
-                    button?:
-                      | T
-                      | {
-                          label?: T;
-                          url?: T;
-                          openInNewTab?: T;
-                        };
-                    id?: T;
-                  };
-              overlayStyle?: T;
-              overlayOpacity?: T;
-              contentAlignment?: T;
-              autoplay?: T;
-              autoplayDuration?: T;
-              showArrows?: T;
-              id?: T;
-              blockName?: T;
-            };
         gallery?: T | GalleryBlockSelect<T>;
-        content?: T | ContentBlockSelect<T>;
-        carousel?:
-          | T
-          | {
-              slides?:
-                | T
-                | {
-                    image?: T;
-                    eyebrow?: T;
-                    title?: T;
-                    description?: T;
-                    link?:
-                      | T
-                      | {
-                          label?: T;
-                          url?: T;
-                          openInNewTab?: T;
-                        };
-                    id?: T;
-                  };
-              loop?: T;
-              align?: T;
-              slidesToShow?: T;
-              gap?: T;
-              dragFree?: T;
-              effect?: T;
-              autoplay?: T;
-              autoplayDelay?: T;
-              stopOnInteraction?: T;
-              pauseOnHover?: T;
-              showArrows?: T;
-              navigationStyle?: T;
-              variant?: T;
-              height?: T;
-              overlayOpacity?: T;
-              id?: T;
-              blockName?: T;
-            };
       };
   updatedAt?: T;
   createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock_select".
+ */
+export interface ContentBlockSelect<T extends boolean = true> {
+  richText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "GalleryBlock_select".
  */
 export interface GalleryBlockSelect<T extends boolean = true> {
-  heading?: T;
-  layout?: T;
-  columns?: T;
   images?:
     | T
     | {
         image?: T;
         caption?: T;
         alt?: T;
-        id?: T;
       };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock_select".
- */
-export interface ContentBlockSelect<T extends boolean = true> {
-  heading?: T;
-  richText?: T;
-  layout?: T;
   id?: T;
   blockName?: T;
 }

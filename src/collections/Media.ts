@@ -42,21 +42,6 @@ export const Media: CollectionConfig = {
   upload: {
     disableLocalStorage: true,
     staticDir: 'media', // thư mục lưu file trên server (nếu không dùng cloud storage)
-    imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 1920,
-        height: 1080,
-        position: 'centre'
-      },
-      {
-        name: 'card',
-        width: 612,
-        height: 612,
-        position: 'center'
-      },
-    ],
-    adminThumbnail: 'thumbnail',
     mimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/jpg', 'image/svg', 'image/webp', 'audio/*'],
     focalPoint: true,
     crop: true,

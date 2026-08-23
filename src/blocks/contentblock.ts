@@ -10,10 +10,6 @@ export const ContentBlock: Block = {
   },
   fields: [
     {
-      name: 'heading',
-      type: 'text',
-    },
-    {
       name: 'richText',
       type: 'richText',
       editor: lexicalEditor({
@@ -23,15 +19,6 @@ export const ContentBlock: Block = {
           InlineToolbarFeature(),
         ],
       }),
-    },
-    {
-      name: 'layout',
-      type: 'select',
-      defaultValue: 'oneColumn',
-      options: [
-        { label: '1 cột', value: 'oneColumn' },
-        { label: '2 cột', value: 'twoColumn' },
-      ],
     },
   ],
 }

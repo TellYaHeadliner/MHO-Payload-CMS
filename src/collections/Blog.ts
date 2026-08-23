@@ -7,7 +7,7 @@ import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@paylo
 import { slugField } from '@/fields/slug-field';
 import { isAdminOrEditor } from '@/access/isAdminOrEditor';
 import { isAdmin } from '@/access/isAdmin';
-import { Marquee } from '@/blocks/marqueeblock';
+import { MarqueeBlock } from '@/blocks/marqueeblock';
 import { HeroBanner } from '@/blocks/herobannerblock';
 import { GalleryBlock } from '@/blocks/galleryblock';
 import { CarouselBlock } from '@/blocks/carouselblock';
@@ -70,11 +70,9 @@ export const Blog: CollectionConfig = {
         description: "Nơi sắp xếp section của page"
       },
       blocks: [
-        Marquee,
-        HeroBanner,
-        GalleryBlock,
         ContentBlock,
-        CarouselBlock
+        MarqueeBlock,
+        GalleryBlock
       ],
     },
   ],

@@ -1,6 +1,5 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
-import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/navbar'
 import Title from './_components/title'
@@ -11,7 +10,6 @@ import Link from 'next/link';
 import { GetAudioType } from '@/utils/getAudioType';
 import { Metadata } from 'next';
 import { setMetaData } from '@/utils/setMetadata';
-import SpotifyEmbed from './_components/spotify-embed';
 import { Spotify } from 'react-spotify-embed';
 
 export async function generateMetadata({ params }: Args): Promise<Metadata> {
