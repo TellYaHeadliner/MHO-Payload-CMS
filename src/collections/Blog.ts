@@ -29,6 +29,13 @@ export const Blog: CollectionConfig = {
       },
     },
   },
+  versions: {
+    drafts: {
+      autosave: true,
+      validate: false
+    },
+    maxPerDoc: 50
+  },
   fields: [
 
     {

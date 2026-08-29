@@ -12,14 +12,21 @@ export const Gallery: CollectionConfig = {
     delete: isAdminOrEditor,
   },
   admin: {
-    useAsTitle: 'title',
-    defaultColumns: ['title', 'description', 'updatedAt', 'slug'],
+    // useAsTitle: 'title',
+    defaultColumns: ['title', 'description', 'updatedAt', 'slug', 'status'],
     preview: () => `${process.env.NEXT_PUBLIC_SERVER_URL}`,
     components: {
       edit: {
         PreviewButton: '@/components/admin/button-live-preview',
       },
     },
+  },
+  versions: {
+    drafts: {
+      autosave: true,
+      validate: false
+    },
+    maxPerDoc: 50
   },
   fields: [
     {

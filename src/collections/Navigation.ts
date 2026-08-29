@@ -8,6 +8,7 @@ const navItem: Field = {
   name: 'items',
   type: 'array',
   labels: { singular: 'Mục menu', plural: 'Các mục menu' },
+  
   fields: [
     { name: 'label', type: 'text', required: true },
     {
@@ -38,6 +39,7 @@ export const Navigation: GlobalConfig = {
   slug: 'navigation',
   label: 'Điều hướng (Menu)',
   admin: { group: 'Trang tĩnh' },
+  
   access: {
     read: anyone,
     update: isLoggedIn,

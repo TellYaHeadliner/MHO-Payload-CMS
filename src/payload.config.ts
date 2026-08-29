@@ -20,7 +20,6 @@ import enTrans from '@/locales/en.json'
 import { customTranslations } from '@/custom-translations'
 import { Gallery } from '@/collections/Gallery'
 import { Header } from '@/globals/header'
-import { Footer } from '@/globals/footer'
 import { Home } from '@/globals/home';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Audio } from './collections/Audio';
@@ -53,7 +52,7 @@ export default buildConfig({
   },
   cors: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
   csrf: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
-  globals: [Header, Footer, Home],
+  globals: [Header, Home],
   collections: [Users, Media, Blog, Categories, Gallery, Audio],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
