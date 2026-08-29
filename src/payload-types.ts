@@ -202,24 +202,7 @@ export interface Blog {
   /**
    * Nơi sắp xếp section của page
    */
-  layout?:
-    | (
-        | ContentBlock
-        | {
-            title?:
-              | {
-                  text: string;
-                  id?: string | null;
-                }[]
-              | null;
-            speed?: ('slow' | 'normal' | 'fast') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'marquee';
-          }
-        | GalleryBlock
-      )[]
-    | null;
+  layout?: (ContentBlock | MaqueerBlock | GalleryBlock)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -267,17 +250,35 @@ export interface ContentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MaqueerBlock".
+ */
+export interface MaqueerBlock {
+  title?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'marquee';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "GalleryBlock".
  */
 export interface GalleryBlock {
-  images: {
-    image: number | Media;
-    caption?: string | null;
-    /**
-     * Dùng cho SEO và accessibility
-     */
-    alt?: string | null;
-  };
+  images?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        /**
+         * Dùng cho SEO và accessibility
+         */
+        alt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'gallery';
@@ -485,19 +486,7 @@ export interface BlogSelect<T extends boolean = true> {
     | T
     | {
         content?: T | ContentBlockSelect<T>;
-        marquee?:
-          | T
-          | {
-              title?:
-                | T
-                | {
-                    text?: T;
-                    id?: T;
-                  };
-              speed?: T;
-              id?: T;
-              blockName?: T;
-            };
+        marquee?: T | MaqueerBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
       };
   updatedAt?: T;
@@ -514,6 +503,20 @@ export interface ContentBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MaqueerBlock_select".
+ */
+export interface MaqueerBlockSelect<T extends boolean = true> {
+  title?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "GalleryBlock_select".
  */
 export interface GalleryBlockSelect<T extends boolean = true> {
@@ -523,6 +526,7 @@ export interface GalleryBlockSelect<T extends boolean = true> {
         image?: T;
         caption?: T;
         alt?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;

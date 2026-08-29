@@ -5,14 +5,12 @@ import { Metadata } from 'next'
 import { setMetaData } from '@/utils/setMetadata'
 import { notFound } from 'next/navigation'
 import Title from './_components/title'
-import { isBlock } from '@/utils/isBlock'
-import MarqueeText from '@/components/shadcn-space/marquee/marquee-text'
-import Gallery from './_components/gallery'
-import { GalleryBlock } from '@/blocks/galleryblock'
-import { getMediaHeight, getMediaUrl, getMediaWidth } from '@/utils/getMediaType'
+import { RenderBlocks } from '@/blocks/blog';
 
-export async function generateMetadata({ params }: Args): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Args): Promise<Metadata> {
   const { slug } = await params
+  const { isDraft } = await searchParams
+  const isDraftMode = isDraft === 'true'
   const payload = await getPayload({ config: configPromise })
 
   const result = await payload.find({
@@ -21,6 +19,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
       slug: { equals: slug },
     },
     depth: 2,
+    draft: isDraftMode,
     locale: 'vi',
     limit: 1,
   })
@@ -58,33 +57,16 @@ export default async function Blog({ params, searchParams }: Args) {
     limit: 1,
   })
 
-  const item = result.docs?.[0]
+  const block = result.docs?.[0]
 
-  if (!item) {
+  if (!block) {
     return notFound()
   }
   return (
     <>
       <Navbar />
-      <Title title={item.title} />
-      {item.layout?.filter(isBlock).map((block) => {
-        switch (block.blockType) {
-          case 'marquee':
-            return <MarqueeText key={block.id} titleItems={block.title} />
-          case 'gallery':
-            return (
-              <div key={block.id} className="max-w-7xl mx-auto px-3 md:px-5 pb-4">
-                <Gallery
-                  key={block.id}
-                  imageSrc={getMediaUrl(block.images.image)}
-                  alt={block.images.alt ?? ''}
-                  width={getMediaWidth(block.images.image)}
-                  height={getMediaHeight(block.images.image)}
-                />
-              </div>
-            )
-        }
-      })}
+      <Title title={block.title} />
+      <RenderBlocks blocks={block.layout} />
     </>
   )
 }

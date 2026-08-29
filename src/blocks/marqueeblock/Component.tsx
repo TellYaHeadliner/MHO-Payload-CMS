@@ -10,7 +10,7 @@ interface MarqueeProps {
   separator?: React.ReactNode
 }
 
-export default function MarqueeText({ titleItems, separator = '/' }: MarqueeProps) {
+export const MarqueeBlock = ({ titleItems, separator = '/' }: MarqueeProps) => {
   return (
     <>
       <Marquee

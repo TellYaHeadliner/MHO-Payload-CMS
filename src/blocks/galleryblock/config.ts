@@ -10,8 +10,9 @@ export const GalleryBlock: Block = {
   fields: [
     {
       name: 'images',
-      type: 'group',
+      type: 'array',
       label: 'Hình ảnh',
+      maxRows: 1,
       fields: [
         {
           name: 'image',

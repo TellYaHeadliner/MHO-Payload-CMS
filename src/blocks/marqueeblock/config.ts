@@ -2,6 +2,7 @@ import { Block } from 'payload'
 
 export const MarqueeBlock: Block = {
     slug: 'marquee',
+    interfaceName: 'MaqueerBlock',
     fields: [
         {
             name: 'title',
@@ -22,15 +23,5 @@ export const MarqueeBlock: Block = {
                 },
             ]
         },
-        {
-            name: 'speed',
-            type: 'select',
-            defaultValue: 'normal',
-            options: [
-                { label: 'Chậm', value: 'slow' },
-                { label: 'Bình thường', value: 'normal' },
-                { label: 'Nhanh', value: 'fast' },
-            ],
-        }
     ]
 }

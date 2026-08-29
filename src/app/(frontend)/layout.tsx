@@ -1,5 +1,6 @@
 import React from 'react'
 import '@/app/styles.css'
+import Footer from '@/components/footer';
 
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -7,7 +8,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-black">{children}</body>
+      <body className="bg-black">
+        {children}
+      </body>
+      <Footer />
     </html>
   )
 }

@@ -1,4 +1,4 @@
-import { ContentBlock } from './../blocks/contentblock';
+import { ContentBlock } from '../blocks/contentblock/config';
 import type { CollectionConfig } from 'payload'
 import type { TFunction } from '@payloadcms/translations'
 
@@ -7,10 +7,10 @@ import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@paylo
 import { slugField } from '@/fields/slug-field';
 import { isAdminOrEditor } from '@/access/isAdminOrEditor';
 import { isAdmin } from '@/access/isAdmin';
-import { MarqueeBlock } from '@/blocks/marqueeblock';
-import { HeroBanner } from '@/blocks/herobannerblock';
-import { GalleryBlock } from '@/blocks/galleryblock';
-import { CarouselBlock } from '@/blocks/carouselblock';
+import { MarqueeBlock } from '@/blocks/marqueeblock/config';
+import { HeroBanner } from '@/blocks/herobanner/config';
+import { GalleryBlock } from '@/blocks/galleryblock/config';
+import { CarouselBlock } from '@/blocks/carouselblock/config';
 
 export const Blog: CollectionConfig = {
   slug: 'blog',
@@ -19,6 +19,15 @@ export const Blog: CollectionConfig = {
     create: isAdminOrEditor,
     update: isAdminOrEditor,
     delete: isAdmin,
+  },
+  admin: {
+    useAsTitle: 'title',
+    preview: () => `${process.env.NEXT_PUBLIC_SERVER_URL}`,
+    components: {
+      edit: {
+        PreviewButton: '@/components/admin/button-live-preview',
+      },
+    },
   },
   fields: [
 

@@ -1,4 +1,3 @@
-'use client'
 import Navbar from '@/components/navbar';
 import type { Gallery } from '@/payload-types'
 import { useLivePreview } from '@payloadcms/live-preview-react'
