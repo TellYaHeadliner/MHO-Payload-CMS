@@ -6,6 +6,7 @@ import { GalleryLightbox } from '@/components/gallery-box';
 import { BackgroundAudio } from '@/components/background-audio';
 import { Link } from '@payloadcms/ui';
 import { GetAudioType } from '@/utils/getAudioType';
+import Footer from '@/components/footer';
 
 export function PostClient({ initialData }: { initialData: Gallery }) {
   const { data } = useLivePreview<Gallery>({
@@ -44,6 +45,7 @@ export function PostClient({ initialData }: { initialData: Gallery }) {
           Back to Home
         </Link>
       </div>
+      <Footer />
     </>
   )
 }

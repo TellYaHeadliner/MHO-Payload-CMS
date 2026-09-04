@@ -11,6 +11,7 @@ import { GetAudioType } from '@/utils/getAudioType';
 import { Metadata } from 'next';
 import { setMetaData } from '@/utils/setMetadata';
 import { Spotify } from 'react-spotify-embed';
+import Footer from '@/components/footer';
 
 export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { slug } = await params
@@ -110,7 +111,7 @@ export default async function Gallery({ params, searchParams }: Args) {
           Back to Home
         </Link>
       </div>
-
+      <Footer />
     </>
   )
 }

@@ -10,7 +10,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body className="bg-black">
         {children}
-        <Footer />
       </body>
     </html>
   )
