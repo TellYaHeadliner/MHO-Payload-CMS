@@ -98,10 +98,12 @@ export interface Config {
   globals: {
     header: Header;
     home: Home;
+    'list-blogs': ListBlog;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     home: HomeSelect<false> | HomeSelect<true>;
+    'list-blogs': ListBlogsSelect<false> | ListBlogsSelect<true>;
   };
   locale: 'vi' | 'en';
   widgets: {
@@ -193,6 +195,10 @@ export interface Blog {
    * Auto-generated from the title if left blank.
    */
   slug: string;
+  /**
+   * Ảnh sẽ đại diện trên danh sách blog
+   */
+  imageBlog?: (number | null) | Media;
   description: string;
   summary?: string | null;
   categories?: (number | null) | Category;
@@ -478,6 +484,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface BlogSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  imageBlog?: T;
   description?: T;
   summary?: T;
   categories?: T;
@@ -710,6 +717,101 @@ export interface Home {
   createdAt?: string | null;
 }
 /**
+ * Nội dung hiển thị ở trang chủ (hero, social links, danh mục điều hướng). Chỉ 1 bản ghi duy nhất.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "list-blogs".
+ */
+export interface ListBlog {
+  id: number;
+  author: number | User;
+  /**
+   * Nơi sắp xếp section của page
+   */
+  layout?: (MaqueerBlock | PostListBlock | CarouselBlock | HeroBannerBlock)[] | null;
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PostListBlock".
+ */
+export interface PostListBlock {
+  labelNameofList: string;
+  selectedArticles?: (number | Blog)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'postlistblock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CarouselBlock".
+ */
+export interface CarouselBlock {
+  slides?:
+    | {
+        image: number | Media;
+        eyebrow?: string | null;
+        title?: string | null;
+        description?: string | null;
+        link?: {
+          label?: string | null;
+          url?: string | null;
+          openInNewTab?: boolean | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  loop?: boolean | null;
+  align?: ('start' | 'center' | 'end') | null;
+  slidesToShow?: ('1' | '2' | '3' | '4') | null;
+  gap?: number | null;
+  dragFree?: boolean | null;
+  effect?: ('slide' | 'fade') | null;
+  autoplay?: boolean | null;
+  autoplayDelay?: number | null;
+  stopOnInteraction?: boolean | null;
+  pauseOnHover?: boolean | null;
+  showArrows?: boolean | null;
+  navigationStyle?: ('counter' | 'dots' | 'progress' | 'none') | null;
+  variant?: ('hero' | 'card' | 'logo') | null;
+  height?: ('full' | 'large' | 'medium') | null;
+  overlayOpacity?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'carousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock".
+ */
+export interface HeroBannerBlock {
+  slides?:
+    | {
+        backgroundImage: number | Media;
+        eyebrow?: string | null;
+        title: string;
+        subtitle?: string | null;
+        button?: {
+          label?: string | null;
+          url?: string | null;
+          openInNewTab?: boolean | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  overlayStyle?: ('gradient-bottom' | 'flat' | 'none') | null;
+  /**
+   * Độ đậm của overlay/gradient tại điểm tối nhất (%)
+   */
+  overlayOpacity?: number | null;
+  contentAlignment?: ('bottom-left' | 'center' | 'left') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'herobanner';
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
@@ -772,6 +874,101 @@ export interface HomeSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "list-blogs_select".
+ */
+export interface ListBlogsSelect<T extends boolean = true> {
+  author?: T;
+  layout?:
+    | T
+    | {
+        marquee?: T | MaqueerBlockSelect<T>;
+        postlistblock?: T | PostListBlockSelect<T>;
+        carousel?: T | CarouselBlockSelect<T>;
+        herobanner?: T | HeroBannerBlockSelect<T>;
+      };
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PostListBlock_select".
+ */
+export interface PostListBlockSelect<T extends boolean = true> {
+  labelNameofList?: T;
+  selectedArticles?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CarouselBlock_select".
+ */
+export interface CarouselBlockSelect<T extends boolean = true> {
+  slides?:
+    | T
+    | {
+        image?: T;
+        eyebrow?: T;
+        title?: T;
+        description?: T;
+        link?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              openInNewTab?: T;
+            };
+        id?: T;
+      };
+  loop?: T;
+  align?: T;
+  slidesToShow?: T;
+  gap?: T;
+  dragFree?: T;
+  effect?: T;
+  autoplay?: T;
+  autoplayDelay?: T;
+  stopOnInteraction?: T;
+  pauseOnHover?: T;
+  showArrows?: T;
+  navigationStyle?: T;
+  variant?: T;
+  height?: T;
+  overlayOpacity?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock_select".
+ */
+export interface HeroBannerBlockSelect<T extends boolean = true> {
+  slides?:
+    | T
+    | {
+        backgroundImage?: T;
+        eyebrow?: T;
+        title?: T;
+        subtitle?: T;
+        button?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              openInNewTab?: T;
+            };
+        id?: T;
+      };
+  overlayStyle?: T;
+  overlayOpacity?: T;
+  contentAlignment?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

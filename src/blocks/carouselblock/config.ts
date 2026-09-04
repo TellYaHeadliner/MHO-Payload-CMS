@@ -6,6 +6,7 @@ export const CarouselBlock: Block = {
     singular: 'Carousel',
     plural: 'Carousels'
   },
+  interfaceName: 'CarouselBlock',
   fields: [
     // ============================================
     // 1. SLIDES (nội dung từng slide)

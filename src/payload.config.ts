@@ -24,6 +24,7 @@ import { Home } from '@/globals/home';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Audio } from './collections/Audio';
 import { PreviewButton } from '@payloadcms/ui';
+import { Blogs } from './globals/blogs';
 // import viTrans from "@/locales/vi.json";
 
 const filename = fileURLToPath(import.meta.url)
@@ -52,7 +53,7 @@ export default buildConfig({
   },
   cors: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
   csrf: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
-  globals: [Header, Home],
+  globals: [Header, Home, Blogs],
   collections: [Users, Media, Blog, Categories, Gallery, Audio],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [

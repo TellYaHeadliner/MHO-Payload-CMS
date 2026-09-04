@@ -62,6 +62,7 @@ export default async function Blog({ params, searchParams }: Args) {
   if (!block) {
     return notFound()
   }
+  
   return (
     <>
       <Navbar />

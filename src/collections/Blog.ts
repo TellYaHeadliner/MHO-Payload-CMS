@@ -3,14 +3,12 @@ import type { CollectionConfig } from 'payload'
 import type { TFunction } from '@payloadcms/translations'
 
 import { CustomTranslationsKeys } from '@/custom-translations'
-import { FixedToolbarFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { slugField } from '@/fields/slug-field';
 import { isAdminOrEditor } from '@/access/isAdminOrEditor';
 import { isAdmin } from '@/access/isAdmin';
 import { MarqueeBlock } from '@/blocks/marqueeblock/config';
-import { HeroBanner } from '@/blocks/herobanner/config';
 import { GalleryBlock } from '@/blocks/galleryblock/config';
-import { CarouselBlock } from '@/blocks/carouselblock/config';
+
 
 export const Blog: CollectionConfig = {
   slug: 'blog',
@@ -49,6 +47,14 @@ export const Blog: CollectionConfig = {
       localized: true,
     },
     slugField('title'),
+    {
+      name: 'imageBlog',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Ảnh sẽ đại diện trên danh sách blog'
+      }
+    },
     {
       name: 'description',
       type: 'text',

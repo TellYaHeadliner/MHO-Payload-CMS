@@ -1,21 +1,17 @@
 import { Block } from 'payload'
 
-export const HeroBanner: Block = {
+export const HeroBannerBlock: Block = {
   slug: 'herobanner',
   labels: {
     singular: 'Hero Banner',
     plural: 'Hero Banners'
   },
+  interfaceName: 'HeroBannerBlock',
   fields: [
       {
       name: 'slides',
       type: 'array',
-      minRows: 1,
-      maxRows: 6,
-      labels: { singular: 'Slide', plural: 'Slides' },
-      admin: {
-        description: 'Mỗi slide = 1 background + nội dung riêng. "01 / 02" ở dưới sẽ tự tính theo số lượng slide.',
-      },
+      maxRows: 1,
       fields: [
         {
           name: 'backgroundImage',
@@ -45,7 +41,7 @@ export const HeroBanner: Block = {
           type: 'group',
           fields: [
             { name: 'label', type: 'text', defaultValue: 'VIEW CONCEPT' },
-            { name: 'url', type: 'text', required: true },
+            { name: 'url', type: 'text'},
             { name: 'openInNewTab', type: 'checkbox', defaultValue: false },
           ],
         },
@@ -85,31 +81,6 @@ export const HeroBanner: Block = {
         { label: 'Left', value: 'left' },
       ],
       defaultValue: 'bottom-left',
-    },
-
- 
-    // --- Slideshow behavior ---
-    {
-      name: 'autoplay',
-      type: 'checkbox',
-      defaultValue: true,
-    },
-    {
-      name: 'autoplayDuration',
-      type: 'number',
-      defaultValue: 6,
-      admin: {
-        condition: (_, siblingData) => siblingData.autoplay,
-        description: 'Số giây mỗi slide hiển thị trước khi tự chuyển',
-      },
-    },
- 
-    // --- Bottom navigation UI (counter + progress bar + arrows) ---
-    {
-      name: 'showArrows',
-      type: 'checkbox',
-      defaultValue: true,
-      label: 'Hiện nút mũi tên prev/next',
     },
   ]
 }

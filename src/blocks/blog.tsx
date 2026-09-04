@@ -6,12 +6,6 @@ import { GalleryBlock } from "./galleryblock/Component";
 
 type LayoutBlock = NonNullable<Blog['layout']>[number]
 
-const blockComponents = {
-    marquee: MarqueeBlock,
-    content: ContentBlock,
-    gallery: GalleryBlock
-} as const;
-
 type Props = {
   blocks: LayoutBlock[] | null | undefined
 }
@@ -20,7 +14,7 @@ export const RenderBlocks: React.FC<Props> = ({ blocks }) => {
   if (!blocks || blocks.length === 0) return null
 
   return (
- <React.Fragment>
+    <React.Fragment>
       {blocks.map((block, index) => {
         const key = block.id ?? index
 
