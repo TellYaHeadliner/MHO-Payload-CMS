@@ -11,7 +11,7 @@ import Footer from '@/components/footer';
 export function PostClient({ initialData }: { initialData: Gallery }) {
   const { data } = useLivePreview<Gallery>({
     initialData,
-    serverURL: `${process.env.SERVER_URL}`, // URL của Payload Server (nếu tách biệt frontend/backend)
+    serverURL: `${process.env.NEXT_PUBLIC_SERVER_URL}`, // URL của Payload Server (nếu tách biệt frontend/backend)
     depth: 2,
   })
 

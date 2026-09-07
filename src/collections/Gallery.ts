@@ -14,7 +14,7 @@ export const Gallery: CollectionConfig = {
   admin: {
     // useAsTitle: 'title',
     defaultColumns: ['title', 'description', 'updatedAt', 'slug', 'status'],
-    preview: () => `${process.env.SERVER_URL}`,
+    preview: () => `${process.env.NEXT_PUBLIC_SERVER_URL}`,
     components: {
       edit: {
         PreviewButton: '@/components/admin/button-live-preview',

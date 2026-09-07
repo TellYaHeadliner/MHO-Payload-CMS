@@ -7,9 +7,9 @@ const ButtonLivePreview = () => {
 
   const handleClick = () => {
     if (collectionSlug){
-      return window.open(`${process.env.SERVER_URL}/${collectionSlug}/${data?.slug}?isDraft=true`)
+      return window.open(`${process.env.NEXT_PUBLIC_SERVER_URL}/${collectionSlug}/${data?.slug}?isDraft=true`)
     }
-    const url = `${process.env.SERVER_URL}/${data?.slug}?isDraft=true`
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/${data?.slug}?isDraft=true`
     window.open(url, 'live-preview')
   }
 

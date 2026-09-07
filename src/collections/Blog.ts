@@ -20,7 +20,7 @@ export const Blog: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    preview: () => `${process.env.SERVER_URL}`,
+    preview: () => `${process.env.NEXT_PUBLIC_SERVER_URL}`,
     components: {
       edit: {
         PreviewButton: '@/components/admin/button-live-preview',
