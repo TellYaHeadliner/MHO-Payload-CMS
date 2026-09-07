@@ -38,7 +38,7 @@ export default buildConfig({
     },
 
     livePreview: {
-      url: `${process.env.NEXT_PUBLIC_SERVER_URL}`, 
+      url: `${process.env.SERVER_URL}`, 
       collections: ['pages'],
       breakpoints: [
         {
@@ -51,8 +51,8 @@ export default buildConfig({
     },
     
   },
-  cors: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
-  csrf: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
+  cors: [String(process.env.SERVER_URL)],
+  csrf: [String(process.env.SERVER_URL)],
   globals: [Header, Home, Blogs],
   collections: [Users, Media, Blog, Categories, Gallery, Audio],
   editor: lexicalEditor({
