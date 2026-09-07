@@ -6,8 +6,8 @@ const ButtonLivePreview = () => {
   const { data, collectionSlug, globalSlug } = useDocumentInfo()
 
   const handleClick = () => {
-    if (collectionSlug){
-      return window.open(`${process.env.NEXT_PUBLIC_SERVER_URL}/${collectionSlug}/${data?.slug}?isDraft=true`)
+    if (collectionSlug === 'blog'){
+      return window.open(`${process.env.NEXT_PUBLIC_SERVER_URL}/blog/${data?.slug}?isDraft=true`)
     }
     const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/${data?.slug}?isDraft=true`
     window.open(url, 'live-preview')

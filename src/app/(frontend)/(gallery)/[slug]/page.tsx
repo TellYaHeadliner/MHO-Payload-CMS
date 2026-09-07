@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
     depth: 2,
     locale: 'vi',
     limit: 1,
+    draft: true
   })
 
   const item = result.docs?.[0]

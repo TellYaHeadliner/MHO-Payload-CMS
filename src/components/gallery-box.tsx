@@ -62,7 +62,7 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
               alt={img.altText ?? img.caption ?? media.alt ?? ''}
               width={Number(media.width)}
               height={Number(media.height)}
-              loading="lazy"
+              loading="eager"
               className={cn(
                 'gallery-image w-full h-auto transition-transform duration-400 ease-in-out group-hover:scale-[1.03] group-hover:opacity-90 select-none',
                 classImage
