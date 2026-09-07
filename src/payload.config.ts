@@ -49,10 +49,7 @@ export default buildConfig({
         }
       ]
     },
-    
   },
-  cors: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
-  csrf: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
   globals: [Header, Home, Blogs],
   collections: [Users, Media, Blog, Categories, Gallery, Audio],
   editor: lexicalEditor({
