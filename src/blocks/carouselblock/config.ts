@@ -6,6 +6,9 @@ export const CarouselBlock: Block = {
     singular: 'Carousel',
     plural: 'Carousels'
   },
+  admin: {
+    disableBlockName: true, // ẩn ô "blockName" và chữ Untitled đi kèm
+  },
   interfaceName: 'CarouselBlock',
   fields: [
     // ============================================

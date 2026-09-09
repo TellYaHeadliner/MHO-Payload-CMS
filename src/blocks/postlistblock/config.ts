@@ -6,6 +6,9 @@ export const PostListBlock: Block = {
     singular: 'Post Block',
     plural: 'Post Blocks',
   },
+  admin: {
+    disableBlockName: true, // ẩn ô "blockName" và chữ Untitled đi kèm
+  },
   interfaceName: 'PostListBlock',
   fields: [
     {

@@ -26,6 +26,7 @@ export const Blog: CollectionConfig = {
         PreviewButton: '@/components/admin/button-live-preview',
       },
     },
+    group: 'Nội dung',
   },
   versions: {
     drafts: {
@@ -39,12 +40,8 @@ export const Blog: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      label: ({ t: defaultT }) => {
-        const t = defaultT as TFunction<CustomTranslationsKeys>
-        return t('createblog:title_label')
-      },
+      label: "Tiêu đề bài viết",
       required: true,
-      localized: true,
     },
     slugField('title'),
     {
@@ -58,20 +55,7 @@ export const Blog: CollectionConfig = {
     {
       name: 'description',
       type: 'text',
-      required: true,
-      label: ({ t: defaultT }) => {
-        const t = defaultT as TFunction<CustomTranslationsKeys>
-        return t('createblog:description_label')
-      },
-      localized: true
-    },
-    {
-      name: 'summary',
-      label: ({ t: defaultT }) => {
-        const t = defaultT as TFunction<CustomTranslationsKeys>
-        return t('createblog:summary_label')
-      },
-      type: 'textarea',
+      label: "Nội dung miêu tả",
     },
     {
       name: 'categories',

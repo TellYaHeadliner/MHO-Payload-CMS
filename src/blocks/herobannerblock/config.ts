@@ -7,6 +7,9 @@ export const HeroBannerBlock: Block = {
     plural: 'Hero Banners'
   },
   interfaceName: 'HeroBannerBlock',
+  admin: {
+    disableBlockName: true, // ẩn ô "blockName" và chữ Untitled đi kèm
+  },
   fields: [
       {
       name: 'slides',

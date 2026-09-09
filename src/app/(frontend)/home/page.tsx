@@ -5,6 +5,12 @@ import Socialmedia from './_components/socialmedia';
 import { PopulatedHome } from '@/types/populated';
 import ButtonLink from './_components/buttonlink';
 import { Gallery } from '@/payload-types';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "𝙢𝙮 𝙝𝙚𝙖𝙡𝙞𝙣𝙜 𝙤𝙨𝙝",
+    description: 'Home of 𝙢𝙮 𝙝𝙚𝙖𝙡𝙞𝙣𝙜 𝙤𝙨𝙝'
+}
 
 async function Home() {
 

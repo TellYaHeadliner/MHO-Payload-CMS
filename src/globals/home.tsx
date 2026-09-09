@@ -55,7 +55,7 @@ export const Home: GlobalConfig  = {
               min: 0,
               max: 100,
               defaultValue: 30,
-              admin: { description: 'Độ tối lớp phủ (0–100%) để chữ dễ đọc' },
+              admin: { description: 'Độ tối lớp phủ (0-100%) để chữ dễ đọc' },
             },
           ],
         },

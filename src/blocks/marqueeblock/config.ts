@@ -3,6 +3,9 @@ import { Block } from 'payload'
 export const MarqueeBlock: Block = {
     slug: 'marquee',
     interfaceName: 'MaqueerBlock',
+    admin: {
+        disableBlockName: true, // ẩn ô "blockName" và chữ Untitled đi kèm
+    },
     fields: [
         {
             name: 'title',

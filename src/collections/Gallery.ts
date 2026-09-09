@@ -12,7 +12,7 @@ export const Gallery: CollectionConfig = {
     delete: isAdminOrEditor,
   },
   admin: {
-    // useAsTitle: 'title',
+    useAsTitle: 'title',
     defaultColumns: ['title', 'description', 'updatedAt', 'slug', 'status'],
     preview: () => `${process.env.NEXT_PUBLIC_SERVER_URL}`,
     components: {
@@ -20,6 +20,7 @@ export const Gallery: CollectionConfig = {
         PreviewButton: '@/components/admin/button-live-preview',
       },
     },
+    group: "Nội dung"
   },
   versions: {
     drafts: {
@@ -32,19 +33,13 @@ export const Gallery: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      label: ({ t: defaultT }) => {
-        const t = defaultT as TFunction<CustomTranslationsKeys>
-        return t('gallery:title_label')
-      },
+      label: "Nội dung bài viết",
       required: true,
     },
     {
       name: 'description',
       type: 'text',
-      label: ({ t: defaultT }) => {
-        const t = defaultT as TFunction<CustomTranslationsKeys>
-        return t('gallery:description_label')
-      },
+      label: "Miêu tả bài viết",
     },
     slugField('title'),
     {
@@ -73,25 +68,16 @@ export const Gallery: CollectionConfig = {
       fields: [
         {
           name: 'sourceType', // 👈 đổi từ 'music' thành 'sourceType'
-          label: ({ t: defaultT }) => {
-            const t = defaultT as TFunction<CustomTranslationsKeys>
-            return t('gallery:music_label')
-          },
+          label: "Loại audio sẽ xuất hiện",
           type: 'select',
           defaultValue: 'upload',
           options: [
             {
-              label: ({ t: defaultT }) => {
-                const t = defaultT as TFunction<CustomTranslationsKeys>
-                return t('gallery:music_upload_label')
-              },
+              label: "Audio có sẵn",
               value: 'upload',
             },
             {
-              label: ({ t: defaultT }) => {
-                const t = defaultT as TFunction<CustomTranslationsKeys>
-                return t('gallery:music_url_label')
-              },
+              label: "Link spotify",
               value: 'url',
             },
           ],
@@ -99,10 +85,7 @@ export const Gallery: CollectionConfig = {
         {
           name: 'audioFile',
           type: 'upload',
-          label: ({ t: defaultT }) => {
-            const t = defaultT as TFunction<CustomTranslationsKeys>
-            return t('gallery:music_upload_label')
-          },
+          label: "Audio có sẵn",
           relationTo: 'audio',
           admin: {
             condition: (data, siblingData) => siblingData?.sourceType === 'upload', // ✅ khớp tên
@@ -110,10 +93,7 @@ export const Gallery: CollectionConfig = {
         },
         {
           name: 'spotifyUrl',
-          label: ({ t: defaultT }) => {
-            const t = defaultT as TFunction<CustomTranslationsKeys>
-            return t('gallery:music_url_label')
-          },
+          label: "Link Spotify",
           type: 'text',
           admin: {
             description: 'Spotify URL',

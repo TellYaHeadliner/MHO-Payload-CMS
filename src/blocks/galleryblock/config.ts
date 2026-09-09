@@ -7,6 +7,9 @@ export const GalleryBlock: Block = {
     singular: 'Gallery',
     plural: 'Gallery Blocks',
   },
+  admin: {
+    disableBlockName: true, // ẩn ô "blockName" và chữ Untitled đi kèm
+  },
   fields: [
     {
       name: 'images',

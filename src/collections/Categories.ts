@@ -10,7 +10,7 @@ export const Categories: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'parent', 'updatedAt'],
-    group: 'Nội dung',
+    group: 'Quản lý thể loại',
   },
   access: {
     read: anyone,
@@ -22,10 +22,7 @@ export const Categories: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      label: ({ t: defaultT }) => {
-        const t = defaultT as TFunction<CustomTranslationsKeys>
-        return t('createblog:title_label')
-      },
+      label: "Bài viết",
       required: true,
       unique: true
     },
@@ -35,10 +32,7 @@ export const Categories: CollectionConfig = {
       type: 'relationship',
       relationTo: 'categories',
       hasMany: false,
-      label: ({ t: defaultT }) => {
-        const t = defaultT as TFunction<CustomTranslationsKeys>
-        return t('categories:parent_label')
-      },
+      label: "Danh mục mẹ",
       admin: {
         description: 'Bỏ trống nếu đây là danh mục gốc',
       },

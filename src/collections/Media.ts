@@ -31,7 +31,7 @@ export const Media: CollectionConfig = {
   admin: {
     useAsTitle: 'filename',
     defaultColumns: ['filename', 'alt', 'filesize', 'updatedAt'],
-    group: 'Nội dung',
+    group: 'Lưu trữ',
   },
   access: {
     read: anyone, // ảnh cần public để hiển thị ngoài site

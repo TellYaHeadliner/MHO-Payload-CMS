@@ -8,6 +8,9 @@ export const ContentBlock: Block = {
     singular: 'Content',
     plural: 'Content Blocks',
   },
+  admin: {
+    disableBlockName: true, // ẩn ô "blockName" và chữ Untitled đi kèm
+  },
   fields: [
     {
       name: 'richText',

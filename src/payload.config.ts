@@ -16,16 +16,13 @@ import { Categories } from '@/collections/Categories'
 import { en } from '@payloadcms/translations/languages/en'
 import { vi } from '@payloadcms/translations/languages/vi'
 
-import enTrans from '@/locales/en.json'
 import { customTranslations } from '@/custom-translations'
 import { Gallery } from '@/collections/Gallery'
-import { Header } from '@/globals/header'
 import { Home } from '@/globals/home';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Audio } from './collections/Audio';
-import { PreviewButton } from '@payloadcms/ui';
 import { Blogs } from './globals/blogs';
-// import viTrans from "@/locales/vi.json";
+
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -52,7 +49,7 @@ export default buildConfig({
     
   },
   cors: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
-  globals: [Header, Home, Blogs],
+  globals: [Home, Blogs],
   collections: [Users, Media, Blog, Categories, Gallery, Audio],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
@@ -85,23 +82,4 @@ export default buildConfig({
       clientUploads: false, 
     }),
   ],
-  i18n: {
-    fallbackLanguage: 'en',
-    supportedLanguages: { en, vi },
-    translations: customTranslations,
-  },
-  localization: {
-    locales: [
-      {
-        label: 'Tiếng Việt',
-        code: 'vi'
-      },
-      {
-        label: 'English',
-        code: 'en'
-      }
-    ],
-    defaultLocale: 'en',
-    fallback: true
-  }
 })

@@ -94,18 +94,16 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('vi' | 'en') | ('vi' | 'en')[];
+  fallbackLocale: null;
   globals: {
-    header: Header;
     home: Home;
     'list-blogs': ListBlog;
   };
   globalsSelect: {
-    header: HeaderSelect<false> | HeaderSelect<true>;
     home: HomeSelect<false> | HomeSelect<true>;
     'list-blogs': ListBlogsSelect<false> | ListBlogsSelect<true>;
   };
-  locale: 'vi' | 'en';
+  locale: null;
   widgets: {
     collections: CollectionsWidget;
   };
@@ -199,8 +197,7 @@ export interface Blog {
    * Ảnh sẽ đại diện trên danh sách blog
    */
   imageBlog?: (number | null) | Media;
-  description: string;
-  summary?: string | null;
+  description?: string | null;
   categories?: (number | null) | Category;
   author: number | User;
   /**
@@ -486,7 +483,6 @@ export interface BlogSelect<T extends boolean = true> {
   slug?: T;
   imageBlog?: T;
   description?: T;
-  summary?: T;
   categories?: T;
   author?: T;
   layout?:
@@ -637,47 +633,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
- */
-export interface Header {
-  id: number;
-  logo: {
-    logo: number | Media;
-    link?: string | null;
-    id?: string | null;
-  }[];
-  socialLinks?:
-    | {
-        label: string;
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'blog';
-                value: number | Blog;
-              } | null)
-            | ({
-                relationTo: 'gallery';
-                value: number | Gallery;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
  * Nội dung hiển thị ở trang chủ (hero, social links, danh mục điều hướng). Chỉ 1 bản ghi duy nhất.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -690,7 +645,7 @@ export interface Home {
     image?: (number | null) | Media;
     video?: (number | null) | Media;
     /**
-     * Độ tối lớp phủ (0–100%) để chữ dễ đọc
+     * Độ tối lớp phủ (0-100%) để chữ dễ đọc
      */
     overlayOpacity?: number | null;
   };
@@ -810,43 +765,6 @@ export interface HeroBannerBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'herobanner';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
- */
-export interface HeaderSelect<T extends boolean = true> {
-  logo?:
-    | T
-    | {
-        logo?: T;
-        link?: T;
-        id?: T;
-      };
-  socialLinks?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        id?: T;
-      };
-  navItems?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
