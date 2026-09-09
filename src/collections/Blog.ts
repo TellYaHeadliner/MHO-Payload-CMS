@@ -1,8 +1,6 @@
 import { ContentBlock } from '../blocks/contentblock/config';
 import type { CollectionConfig } from 'payload'
-import type { TFunction } from '@payloadcms/translations'
 
-import { CustomTranslationsKeys } from '@/custom-translations'
 import { slugField } from '@/fields/slug-field';
 import { isAdminOrEditor } from '@/access/isAdminOrEditor';
 import { isAdmin } from '@/access/isAdmin';
@@ -61,6 +59,11 @@ export const Blog: CollectionConfig = {
       name: 'categories',
       type: 'relationship',
       relationTo: 'categories',
+    },
+        {
+      name: 'summary',
+      type: 'textarea',
+      label: "Nội dung miêu tả",
     },
     {
       name: 'author',

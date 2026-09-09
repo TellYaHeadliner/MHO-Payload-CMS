@@ -1,7 +1,5 @@
 import { isAdminOrEditor } from '@/access/isAdminOrEditor'
-import { TFunction } from '@payloadcms/translations'
 import { slugField } from '@/fields/slug-field'
-import { CustomTranslationsKeys } from '@/custom-translations'
 import { CollectionConfig } from 'payload'
 
 export const Gallery: CollectionConfig = {

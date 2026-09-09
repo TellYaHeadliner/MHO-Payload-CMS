@@ -13,10 +13,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Blog } from '@/collections/Blog'
 import { Categories } from '@/collections/Categories'
-import { en } from '@payloadcms/translations/languages/en'
-import { vi } from '@payloadcms/translations/languages/vi'
 
-import { customTranslations } from '@/custom-translations'
 import { Gallery } from '@/collections/Gallery'
 import { Home } from '@/globals/home';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'

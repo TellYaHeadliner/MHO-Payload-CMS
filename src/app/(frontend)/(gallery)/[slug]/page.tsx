@@ -23,7 +23,6 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
       slug: { equals: slug },
     },
     depth: 2,
-    locale: 'vi',
     limit: 1,
     draft: true
   })
@@ -57,7 +56,6 @@ export default async function Gallery({ params, searchParams }: Args) {
     },
     depth: 2,
     draft: isDraftMode,
-    locale: 'vi',
     limit: 1,
   })
 

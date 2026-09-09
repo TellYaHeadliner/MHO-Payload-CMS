@@ -1,8 +1,6 @@
 import { anyone } from '@/access/anyone';
 import { isAdmin } from '@/access/isAdmin';
-import { CustomTranslationsKeys } from '@/custom-translations';
 import { slugField } from '@/fields/slug-field';
-import { TFunction } from '@payloadcms/translations';
 import type { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {

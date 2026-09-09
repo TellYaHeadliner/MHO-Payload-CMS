@@ -20,7 +20,7 @@ export async function generateMetadata({ params, searchParams }: Args): Promise<
     },
     depth: 2,
     draft: isDraftMode,
-    locale: 'vi',
+
     limit: 1,
   })
 
@@ -53,7 +53,6 @@ export default async function Blog({ params, searchParams }: Args) {
     },
     depth: 2,
     draft: isDraftMode,
-    locale: 'vi',
     limit: 1,
   })
 

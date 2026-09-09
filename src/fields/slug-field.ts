@@ -1,8 +1,6 @@
 // fields/slug.ts
 import type { Field } from 'payload'
 import { formatSlug } from '@/utils/formatSlug'
-import { TFunction } from '@payloadcms/translations';
-import { CustomTranslationsKeys } from '@/custom-translations';
 
 type SlugFieldFactory = (fallbackField?: string) => Field
 

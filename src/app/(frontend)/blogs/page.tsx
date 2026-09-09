@@ -26,7 +26,6 @@ export default async function Blog({ params, searchParams }: Args) {
       description: true,
       categories: true,
       imageBlog: true,
-      summary: true
     },
   },
   })

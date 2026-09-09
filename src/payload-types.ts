@@ -199,6 +199,7 @@ export interface Blog {
   imageBlog?: (number | null) | Media;
   description?: string | null;
   categories?: (number | null) | Category;
+  summary?: string | null;
   author: number | User;
   /**
    * Nơi sắp xếp section của page
@@ -484,6 +485,7 @@ export interface BlogSelect<T extends boolean = true> {
   imageBlog?: T;
   description?: T;
   categories?: T;
+  summary?: T;
   author?: T;
   layout?:
     | T
