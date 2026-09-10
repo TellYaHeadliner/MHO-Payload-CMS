@@ -10,9 +10,41 @@
   left: 10px;
 }
 
-
 .container-wrapper-input-and-button{
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.account-logout-section{
+  margin-top: 0;
+  margin-bottom: 0;
+  gap: 0;
+}
+
+.account-logout-section__button {
+  background-color: var(--theme-error-500);
+  color: #fff;
+  border-color: var(--theme-error-500);
+}
+
+.custom-admin-header {
+  position: relative;
+}
+
+.custom-admin-header__logout {
+  position: absolute;
+  top: 50%;
+  right: var(--gutter-h);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.custom-admin-header__logout .btn {
+  white-space: nowrap;
+}
+
+.payload-settings{
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

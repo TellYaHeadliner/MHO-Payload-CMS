@@ -3,7 +3,7 @@
 import { Button, useDocumentInfo } from '@payloadcms/ui'
 
 const ButtonLivePreview = () => {
-  const { data, collectionSlug, globalSlug } = useDocumentInfo()
+  const { data, collectionSlug } = useDocumentInfo()
 
   const handleClick = () => {
     if (collectionSlug === 'blog'){

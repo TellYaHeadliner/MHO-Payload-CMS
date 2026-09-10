@@ -30,6 +30,10 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      header: ['@/components/admin/account-logout#default'],
+    },
+
 
     livePreview: {
       url: `${process.env.SERVER_URL}`, 
@@ -43,7 +47,6 @@ export default buildConfig({
         }
       ]
     },
-    
   },
   cors: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
   globals: [Home, Blogs],
