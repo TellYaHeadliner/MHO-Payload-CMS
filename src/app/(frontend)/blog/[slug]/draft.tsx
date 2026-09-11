@@ -1,4 +1,4 @@
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/header';
 import type { Blog } from '@/payload-types'
 import { useLivePreview } from '@payloadcms/live-preview-react'
 import Title from './_components/title';

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const Navbar = () => {
+const Header = () => {
   const urlBg = 'https://www.myhealingosh-gallery.com/gallery/logo-white.webp'
 
   return (
@@ -32,4 +32,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Header

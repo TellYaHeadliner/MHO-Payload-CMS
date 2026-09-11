@@ -1,10 +1,7 @@
-import Navbar from '@/components/navbar'
+import Header from '@/components/header'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
-import { notFound } from 'next/navigation'
 import { RenderBlocks } from '@/blocks/blogs';
-import { PopulatedHome } from '@/types/populated';
-import { homedir } from 'node:os';
 
 type Args = {
   params: Promise<{ slug: string }>
@@ -32,7 +29,7 @@ export default async function Blog({ params, searchParams }: Args) {
   
   return (
     <>
-      <Navbar />
+      <Header />
       <RenderBlocks blocks={global?.layout} />
     </>
   )

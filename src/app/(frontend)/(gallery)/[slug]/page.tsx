@@ -1,7 +1,7 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { notFound } from 'next/navigation'
-import Navbar from '@/components/navbar'
+import Header from '@/components/header'
 import Title from './_components/title'
 import { GalleryLightbox } from '@/components/gallery-box'
 import { BackgroundAudio } from '@/components/background-audio';
@@ -70,7 +70,7 @@ export default async function Gallery({ params, searchParams }: Args) {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <Title title={item.title} />
 
       <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4">

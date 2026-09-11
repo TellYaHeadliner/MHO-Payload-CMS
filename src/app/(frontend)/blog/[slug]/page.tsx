@@ -1,4 +1,4 @@
-import Navbar from '@/components/navbar'
+import Header from '@/components/header'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { Metadata } from 'next'
@@ -64,7 +64,7 @@ export default async function Blog({ params, searchParams }: Args) {
   
   return (
     <>
-      <Navbar />
+      <Header />
       <Title title={block.title} />
       <RenderBlocks blocks={block.layout} />
     </>
