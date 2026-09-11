@@ -14,9 +14,20 @@ interface GalleryProps {
 
 export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) => {
   const [activeImage, setActiveImage] = useState<Media | null>(null)
+  const [loadedImages, setLoadedImages] = useState<Set<string | number>>(new Set())
+  const [lightboxLoaded, setLightboxLoaded] = useState(false)
 
   const closeLightbox = useCallback((): void => {
     setActiveImage(null)
+  }, [])
+
+  const handleImageLoad = useCallback((id: string | number) => {
+    setLoadedImages((prev) => new Set(prev).add(id))
+  }, [])
+
+  const openLightbox = useCallback((media: Media) => {
+    setLightboxLoaded(false)
+    setActiveImage(media)
   }, [])
 
   useEffect(() => {
@@ -57,12 +68,18 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
             className="group relative aspect-square overflow-hidden rounded-sm cursor-pointer"
             onClick={() => setActiveImage(media)}
           >
+            {/* Skeleton */}
+            {!loadedImages.has(img.id ?? idx) && (
+              <div className="absolute inset-0 animate-pulse bg-gray-200" />
+            )}
+
             <Image
               src={media.url}
               alt={img.altText ?? img.caption ?? media.alt ?? ''}
               width={Number(media.width)}
               height={Number(media.height)}
               loading="eager"
+              onLoad={() => handleImageLoad(img.id ?? idx)}
               className={cn(
                 'gallery-image cursor-pointer w-full h-auto transition-transform duration-400 ease-in-out group-hover:scale-[1.03] group-hover:opacity-90 select-none',
                 classImage
@@ -80,13 +97,18 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
           role="dialog"
           aria-modal="true"
         >
+          {!lightboxLoaded && (
+            <div className="absolute inset-0 animate-pulse bg-gray-800" />
+          )}
+
           <div className="relative w-[92vw] h-[92vh]">
             <Image
               src={activeImage.url}
               alt="Enlarged view"
               fill
               sizes="92vw"
-              className="object-contain select-none"
+              onLoad={() => setLightboxLoaded(true)}
+              className="object-contain select-none transition-opacity duration-300"
             />
           </div>
         </div>
