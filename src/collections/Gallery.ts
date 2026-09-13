@@ -31,7 +31,7 @@ export const Gallery: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      label: "Nội dung bài viết",
+      label: "Tiêu đề bài viết",
       required: true,
     },
     {
