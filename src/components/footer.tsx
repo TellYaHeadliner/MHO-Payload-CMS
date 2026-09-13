@@ -16,7 +16,7 @@ export default function Footer({
         </a>
 
         <span className="font-mono text-[11px] tracking-widest uppercase text-stone-500">
-          © {year} {prefix} {suffix}
+          © {year} {prefix}{suffix}
         </span>
       </div>
     </footer>
