@@ -19,6 +19,7 @@ import { Home } from '@/globals/home';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Audio } from './collections/Audio';
 import { Blogs } from './globals/blogs';
+import { Header } from './globals/header';
 
 
 const filename = fileURLToPath(import.meta.url)
@@ -49,7 +50,7 @@ export default buildConfig({
     },
   },
   cors: [String(process.env.NEXT_PUBLIC_SERVER_URL)],
-  globals: [Home, Blogs],
+  globals: [Home, Blogs, Header],
   collections: [Users, Media, Blog, Categories, Gallery, Audio],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [

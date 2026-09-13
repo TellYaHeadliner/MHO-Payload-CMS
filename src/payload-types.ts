@@ -98,10 +98,12 @@ export interface Config {
   globals: {
     home: Home;
     'list-blogs': ListBlog;
+    header: Header;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
     'list-blogs': ListBlogsSelect<false> | ListBlogsSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
   };
   locale: null;
   widgets: {
@@ -770,6 +772,28 @@ export interface HeroBannerBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: number;
+  logo: {
+    text: string;
+    highlightText: string;
+    href?: string | null;
+  };
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  galleryItem: (number | Gallery)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
@@ -889,6 +913,30 @@ export interface HeroBannerBlockSelect<T extends boolean = true> {
   contentAlignment?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        text?: T;
+        highlightText?: T;
+        href?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  galleryItem?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

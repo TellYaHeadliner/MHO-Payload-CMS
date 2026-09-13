@@ -73,7 +73,7 @@ export default async function Gallery({ params, searchParams }: Args) {
       <Header />
       <Title title={item.title} />
 
-      <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4">
+      <div className="max-w-7xl mx-auto px-3 md:px-5 pb-4 md:overflow-y-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <GalleryLightbox
             images={item.images}
