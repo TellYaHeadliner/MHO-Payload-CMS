@@ -52,13 +52,13 @@ const Header = async ({ pushMobileNav = false }: HeaderProps) => {
         {/* Right: desktop nav - toàn bộ mục Gallery dàn trải, tối đa 7, render sẵn ở server */}
         <div className="hidden md:flex items-center flex-wrap justify-end gap-x-6 gap-y-2 lg:gap-x-8">
           {galleryItems.map((item) => (
-            <Link
+            <a
               key={item.href}
               href={item.href}
               className="text-white/70 hover:text-white text-xs lg:text-sm uppercase tracking-wider whitespace-nowrap transition-colors"
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </div>
       </div>
