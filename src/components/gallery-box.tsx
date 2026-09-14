@@ -79,6 +79,7 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
               width={Number(media.width)}
               height={Number(media.height)}
               loading="lazy"
+              unoptimized={false}
               onLoad={() => handleImageLoad(img.id ?? idx)}
               className={cn(
                 'gallery-image cursor-pointer w-full h-auto transition-transform duration-400 ease-in-out group-hover:scale-[1.03] group-hover:opacity-90 select-none',
@@ -107,6 +108,7 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
               alt="Enlarged view"
               fill
               sizes="92vw"
+              unoptimized={false}
               onLoad={() => setLightboxLoaded(true)}
               className="object-contain select-none transition-opacity duration-300"
             />
