@@ -66,8 +66,9 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
+      max: 1
     },
-    push: true,
+    push: false,
   }),
   sharp,
   plugins: [
