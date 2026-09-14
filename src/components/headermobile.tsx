@@ -45,14 +45,14 @@ const MobileNav = ({ galleryItems, pushContent = false }: MobileNavProps) => {
       >
         <div className="px-5 py-2 flex flex-col">
           {galleryItems.map((item) => (
-            <Link
+            <a
               key={item.href}
               href={item.href}
               className="text-white/70 hover:text-white text-sm uppercase tracking-wider py-3 border-b border-white/5 last:border-b-0 transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </div>
       </div>

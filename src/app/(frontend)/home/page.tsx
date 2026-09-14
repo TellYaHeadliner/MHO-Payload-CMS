@@ -57,7 +57,6 @@ async function Home() {
               href={nav.slug}
               title={nav.title}
               key={nav.id}
-              prefetch={false}
             />
           ))
         }

@@ -10,13 +10,13 @@ interface ButtonLinkProps extends ComponentProps<typeof Link>{
 //
 const ButtonLink = ({ href, title, className, ...props}: ButtonLinkProps) => {
   return (
-    <Link
+    <a
       href={href || "/"}
       className={cn("px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold uppercase tracking-wider transition-all duration-300", className)}
       {...props}
     >
       {title}
-    </Link>
+    </a>
   );
 };
 
