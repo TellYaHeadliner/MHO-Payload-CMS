@@ -35,17 +35,16 @@ const Header = async ({ pushMobileNav = false }: HeaderProps) => {
           {socialLinks?.map((social) => {
             const Icon = socialIconMap[social.platform]
             return (
-              <Link
+              <a
                 key={social.id ?? social.platform}
                 href={social.url}
                 target="_blank"
                 rel="noreferrer"
-                prefetch={false}
                 className="text-white/70 hover:text-white transition-colors"
                 aria-label={social.platform}
               >
                 <Icon className="w-5 h-5" />
-              </Link>
+              </a>
             )
           })}
         </div>
