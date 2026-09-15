@@ -21,7 +21,6 @@ import { Audio } from './collections/Audio';
 import { Blogs } from './globals/blogs';
 import { Header } from './globals/header';
 
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -66,7 +65,8 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
-      max: 10
+      max: 5,
+      idleTimeoutMillis: 10000,
     },
     push: false,
   }),

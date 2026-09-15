@@ -109,6 +109,7 @@ export const GalleryLightbox: React.FC<GalleryProps> = ({ images, classImage }) 
               fill
               sizes="92vw"
               unoptimized={false}
+              loading="lazy"
               onLoad={() => setLightboxLoaded(true)}
               className="object-contain select-none transition-opacity duration-300"
             />
